@@ -1,0 +1,233 @@
+/* Hero Section */
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 50px;
+  background: linear-gradient(90deg, #0d47a1, #42a5f5);
+  color: white;
+}
+
+.hero-text {
+  max-width: 50%;
+}
+
+.hero-text h1 {
+  font-size: 2.5rem;
+}
+
+.hero-text span {
+  color: #bbdefb;
+}
+
+.hero-text p {
+  margin: 20px 0;
+}
+
+.buttons {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.primary-btn {
+  padding: 10px 20px;
+  background: white;
+  color: #0d47a1;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.secondary-btn {
+  padding: 10px 20px;
+  background: transparent;
+  color: white;
+  border: 2px solid white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.stats {
+  display: flex;
+  gap: 40px;
+  margin-top: 20px;
+}
+
+.stats strong {
+  font-size: 1.5rem;
+}
+
+.hero-image img {
+  max-width: 350px;
+  border-radius: 15px;
+}
+
+/* Categories */
+.categories {
+  padding: 50px;
+  text-align: center;
+  background: #f8faff; /* light blue-gray */
+}
+
+.category-grid {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+
+.category-card {
+  background: #f5f5f5;
+  padding: 20px 30px;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.category-card:hover {
+  background: #0d47a1;
+  color: white;
+}
+
+/* Featured Products */
+.featured {
+  padding: 50px;
+  text-align: center;
+  background: #ffffff; /* pure white for product contrast */
+}
+
+.product-grid {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap; /* for responsiveness */
+}
+
+.product-card {
+  background: white;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  width: 220px; /* fixed card width */
+  text-align: center;
+}
+
+.product-card img {
+  width: 100%;
+  height: 250px; /* fixed height */
+  object-fit: cover; /* crop instead of stretch */
+  border-radius: 10px;
+}
+
+.product-card h3 {
+  margin: 10px 0 5px;
+  font-size: 1rem;
+}
+
+.product-card p {
+  font-weight: bold;
+  color: #0d47a1;
+}
+
+
+/* Offers */
+.offers {
+  padding: 50px;
+  background: linear-gradient(135deg, #0d47a1, #42a5f5);
+  background: #f0f4ff;
+  text-align: center;
+}
+
+.offer-banner {
+  background: #0d47a1;
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+/* Newsletter */
+.newsletter {
+  padding: 50px;
+  text-align: center;
+  background: #f8faff; /* match categories section */
+}
+
+.newsletter-form {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.newsletter-form input {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+/* Footer */
+.footer {
+  background: linear-gradient(135deg, #0d47a1, #42a5f5);
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+.section-gradient {
+  background: linear-gradient(to right, #000000, #ffffff);
+  padding: 50px 0;
+  color: white;
+}
+
+.section-gradient h2 {
+  color: black;
+  font-size: 2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+/* Brand buttons */
+ .brand-buttons button {
+  background: linear-gradient(135deg, #0d47a1, #42a5f5);
+  border: 1px solid white;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.brand-buttons button:hover {
+  background: white;
+  color: black;
+}
+
+/* Product cards */
+.section-gradient .product-card {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 15px;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.section-gradient .product-card h3,
+.section-gradient .product-card p {
+  color: white;
+}
+.shop-by-brand button {
+    background: linear-gradient(135deg, #0d47a1, #42a5f5);
+    color: white; /* keep text visible */
+    border: none;
+    border-radius: 8px;
+    padding: 12px 24px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.shop-by-brand button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
