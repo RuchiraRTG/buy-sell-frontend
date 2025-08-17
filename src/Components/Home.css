@@ -77,7 +77,7 @@
 }
 
 .category-card {
-  background: #f5f5f5;
+  background:linear-gradient(135deg, #0d47a1, #42a5f5);
   padding: 20px 30px;
   border-radius: 10px;
   font-weight: bold;
