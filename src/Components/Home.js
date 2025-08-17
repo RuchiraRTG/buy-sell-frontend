@@ -5,6 +5,9 @@ import iphone15 from "../Assets/Img/iPhone15Pro.webp";
 import ip15pro from "../Assets/Img/ip15pro.avif"
 import sS24 from "../Assets/Img/s24.jpg";
 import OnePlus12 from "../Assets/Img/One12.jpeg";
+import O12 from "../Assets/Img/oneplus12.png";
+import HM1 from "../Assets/Img/HM1.png";
+import S24U from "../Assets/Img/s24.png";
 
 function HomePage() {
   return (
@@ -42,7 +45,7 @@ function HomePage() {
         </div>
         <div className="hero-image">
           <img
-            src="https://via.placeholder.com/350x500.png?text=Phone+Image"
+            src={HM1}
             alt="Phone"
           />
         </div>
@@ -74,7 +77,7 @@ function HomePage() {
             <p>$899</p>
           </div>
           <div className="product-card">
-            <img src= {OnePlus12} alt="Phone" />
+            <img src= {O12} alt="Phone" />
             <h3>OnePlus 12</h3>
             <p>$799</p>
           </div>
