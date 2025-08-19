@@ -4,6 +4,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import Profile from "../Profile/Profile";
 import { useNavigate } from "react-router-dom";
+import Accessories from "../Pages/Accessories/Accessories";
  
 
 import {
@@ -56,7 +57,7 @@ function Navbar() {
           <a href="#" className="nav-link">
             Phones
           </a>
-          <a href="#" className="nav-link">
+          <a href="/Accessories" className="nav-link">
             Accessories
           </a>
           <a href="#" className="nav-link">
