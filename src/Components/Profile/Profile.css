@@ -1,0 +1,103 @@
+ /* ===== Profile Page Background ===== */
+.profile-page {
+  min-height: calc(100vh - 80px); /* adjust 80px if navbar height is different */
+  display: grid;
+  place-items: center;
+  padding: 24px;
+
+  /* Blurred overlay */
+  background: rgba(0, 0, 0, 0.5);       /* dark semi-transparent */
+  backdrop-filter: blur(8px);           /* blur effect */
+  -webkit-backdrop-filter: blur(8px);   /* Safari support */
+}
+
+/* ===== Profile Card ===== */
+.profile-card {
+  width: min(720px, 92vw);
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+  color: #333;
+  position: relative;
+  z-index: 2;
+}
+
+/* ===== Title ===== */
+.profile-card h2 {
+  text-align: center;
+  margin-bottom: 18px;
+  color: #222;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+/* ===== Details Section ===== */
+.profile-details {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 16px 24px;
+  align-items: start;
+}
+
+/* Profile Info */
+.profile-info p {
+  margin: 10px 0;
+  line-height: 1.5;
+  font-size: 16px;
+}
+
+.profile-info strong {
+  color: #0d47a1; /* blue highlight for labels */
+}
+
+/* ===== Buttons Section ===== */
+.profile-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Update button */
+.update-btn {
+  background: linear-gradient(135deg, #2196f3, #21cbf3);
+  color: #fff;
+  border: 0;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+.update-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(33, 150, 243, 0.4);
+}
+
+/* Delete button */
+.delete-btn {
+  background: linear-gradient(135deg, #e53935, #e35d5b);
+  color: #fff;
+  border: 0;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+.delete-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(229, 57, 53, 0.4);
+}
+
+/* ===== Responsive (Mobile) ===== */
+@media (max-width: 520px) {
+  .profile-details {
+    grid-template-columns: 1fr;
+  }
+
+  .profile-actions {
+    flex-direction: row;
+    justify-content: flex-end;
+  }
+}
