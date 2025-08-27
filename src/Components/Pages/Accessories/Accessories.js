@@ -11,7 +11,7 @@ const accessoriesData = [
     price: 65,
     discount: 15,
     rating: 4.5,
-    image: earbuds,
+    image: earbuds, 
   },
   {
     id: 2,
