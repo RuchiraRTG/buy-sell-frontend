@@ -28,7 +28,7 @@ function HomePage() {
 
             <div className="buttons">
               <a href="#featured" className="primary-btn">Shop Now</a>
-              <button className="secondary-btn">Learn More</button>
+              <button  className="secondary-btn">Deals</button>
             </div>
 
             <div className="stats">
