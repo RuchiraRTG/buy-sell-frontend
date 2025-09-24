@@ -3,6 +3,7 @@ import "./Navbar.css";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import Profile from "../Profile/Profile";
+import Support from "../Pages/support/support";
 import { useNavigate } from "react-router-dom";
 import Accessories from "../Pages/Accessories/Accessories";
  
@@ -63,9 +64,7 @@ function Navbar() {
           <a href="#" className="nav-link">
             Deals
           </a>
-          <a href="#" className="nav-link">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
-            Support
-          </a>
+          <a href="/Support" className="nav-link">Support</a>
         </nav>
 
         {/* Actions */}
@@ -142,7 +141,7 @@ function Navbar() {
             Deals
           </a>
           <a
-            href="#"
+            href="#support"
             className="mobile-link"
             onClick={() => setMenuOpen(false)}
           >
