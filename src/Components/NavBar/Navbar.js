@@ -55,16 +55,16 @@ function Navbar() {
 
         {/* Desktop Links */}
         <nav className="nav-links" aria-label="Primary">
-          <a href="#" className="nav-link">
+          <Link to="/Phones" className="nav-link">
             Phones
-          </a>
-          <a href="/Accessories" className="nav-link">
+          </Link>
+          <Link to="/Accessories" className="nav-link">
             Accessories
-          </a>
+          </Link>
           <a href="#" className="nav-link">
             Deals
           </a>
-          <a href="/Support" className="nav-link">Support</a>
+          <Link to="/Support" className="nav-link">Support</Link>
         </nav>
 
         {/* Actions */}
@@ -119,20 +119,20 @@ function Navbar() {
       {/* Mobile Drawer */}
       <div className={`mobile-wrap ${menuOpen ? "open" : ""}`} ref={menuRef}>
         <nav className="mobile-nav" aria-label="Mobile">
-          <a
-            href="#"
+          <Link
+            to="/Phones"
             className="mobile-link"
             onClick={() => setMenuOpen(false)}
           >
             Phones
-          </a>
-          <a
-            href="#"
+          </Link>
+          <Link
+            to="/Accessories"
             className="mobile-link"
             onClick={() => setMenuOpen(false)}
           >
             Accessories
-          </a>
+          </Link>
           <a
             href="#"
             className="mobile-link"
@@ -140,13 +140,13 @@ function Navbar() {
           >
             Deals
           </a>
-          <a
-            href="#support"
+          <Link
+            to="/Support"
             className="mobile-link"
             onClick={() => setMenuOpen(false)}
           >
             Support
-          </a>
+          </Link>
           <div className="mobile-actions">
             <button className="mobile-btn">Sign In</button>
             <button className="mobile-btn mobile-btn-outline">View Cart</button>
