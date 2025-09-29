@@ -571,24 +571,6 @@
   letter-spacing: 0.5px;
 }
 
-/* Discount Badge */
-.discount-badge {
-  position: absolute;
-  top: 14px;
-  right: 14px;
-  background: linear-gradient(135deg, #ef4444, #f59e0b);
-  color: #fff;
-  font-size: 0.7rem;
-  padding: 6px 12px;
-  border-radius: 999px;
-  font-weight: 700;
-  letter-spacing: 0.5px;
-  box-shadow: 0 6px 14px -4px rgba(239, 68, 68, 0.45);
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
-
 /* Action Buttons */
 .action-btns {
   display: flex;
