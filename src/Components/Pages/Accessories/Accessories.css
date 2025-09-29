@@ -74,10 +74,6 @@
 .old-price { text-decoration:line-through; color:#94a3b8; font-size:.75rem; font-weight:500; }
 .new-price { font-size:1.45rem; font-weight:800; background:linear-gradient(90deg,#2563eb,#6366f1,#8b5cf6); background-clip:text; -webkit-background-clip:text; color:transparent; letter-spacing:.5px; }
 
-/* Discount */
-.discount-badge { position:absolute; top:14px; right:14px; background:linear-gradient(135deg,#ef4444,#f59e0b); color:#fff; font-size:.7rem; padding:5px 12px; border-radius:999px; font-weight:700; letter-spacing:.5px; box-shadow:0 6px 14px -4px rgba(239,68,68,0.45); display:inline-flex; align-items:center; gap:4px; }
-.discount-badge::before { content:'★'; font-size:.6rem; }
-
 /* Actions */
 .action-btns { display:flex; flex-direction:column; gap:12px; margin-top:16px; }
 .add-cart-btn, .buy-now-btn { width:100%; padding:14px 14px 15px; border-radius:18px; border:none; cursor:pointer; font-weight:700; display:flex; align-items:center; justify-content:center; gap:10px; font-size:.85rem; letter-spacing:.5px; position:relative; overflow:hidden; transition:all .5s cubic-bezier(.16,.84,.44,1); }

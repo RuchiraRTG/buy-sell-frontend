@@ -356,16 +356,8 @@ function Phones() {
           {/* Phones Grid */}
           <div className="phones-grid">
             {paginatedPhones.map((phone) => {
-              const discountedPrice = phone.price - (phone.price * phone.discount / 100);
               return (
                 <div key={phone.id} className="phone-card">
-                  {phone.discount > 0 && (
-                    <div className="discount-badge">
-                      <FaBolt />
-                      {phone.discount}% OFF
-                    </div>
-                  )}
-                  
                   <div className="phone-image-container">
                     <img 
                       src={phone.image} 
@@ -398,10 +390,7 @@ function Phones() {
                     </div>
 
                     <div className="price-section">
-                      {phone.discount > 0 && (
-                        <span className="old-price">${phone.price}</span>
-                      )}
-                      <span className="new-price">${discountedPrice.toFixed(0)}</span>
+                      <span className="new-price">${phone.price}</span>
                     </div>
 
                     <div className="action-btns">

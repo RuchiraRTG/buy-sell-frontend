@@ -152,7 +152,6 @@ function Accessories() {
       <div className="accessories-grid">
         {filteredAccessories.map((item) => (
           <div className="accessory-card" key={item.id}>
-            <span className="discount-badge">-{item.discount}%</span>
             <img src={item.image} alt={item.name} className="accessory-img" />
             <h3>{item.name}</h3>
             <div className="rating">
@@ -165,9 +164,6 @@ function Accessories() {
               <span className="rating-num">{item.rating}</span>
             </div>
             <p className="price">
-              <span className="old-price">
-                ${Math.round(item.price + item.price * (item.discount / 100))}
-              </span>
               <span className="new-price">${item.price}</span>
             </p>
             <div className="action-btns">
