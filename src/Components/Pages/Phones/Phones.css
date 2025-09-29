@@ -394,116 +394,200 @@
   font-size: 0.9rem;
 }
 
+.page-info {
+  color: #6366f1;
+  font-weight: 500;
+}
+
 /* Phones Grid */
 .phones-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: clamp(1rem, 0.6rem + 1vw, 2rem);
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: clamp(1.5rem, 0.8rem + 1.5vw, 2.5rem);
   margin-bottom: 40px;
   animation: fadeInUp 0.8s ease;
+  justify-items: center;
 }
 
 /* Phone Card */
 .phone-card {
-  background: linear-gradient(145deg, rgba(255, 255, 255, 0.9), rgba(245, 247, 255, 0.7));
-  padding: 20px 20px 22px;
-  border-radius: 28px;
-  box-shadow: 0 8px 30px -10px rgba(30, 41, 59, 0.15), 0 4px 8px -2px rgba(30, 41, 59, 0.05);
-  transition: all 0.45s cubic-bezier(0.16, 0.84, 0.44, 1);
+  background: rgba(255, 255, 255, 0.95);
+  padding: 20px;
+  border-radius: 24px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
   text-align: center;
   position: relative;
-  border: 1px solid rgba(99, 102, 241, 0.18);
+  border: 1px solid rgba(0, 0, 0, 0.06);
   overflow: hidden;
-}
-
-.phone-card::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at 30% 20%, rgba(99, 102, 241, 0.15), transparent 60%), 
-              radial-gradient(circle at 70% 80%, rgba(139, 92, 246, 0.18), transparent 65%);
-  opacity: 0;
-  transition: opacity 0.5s ease;
-  pointer-events: none;
+  max-width: 350px;
+  width: 100%;
+  margin: 0 auto;
 }
 
 .phone-card:hover {
-  transform: translateY(-10px) scale(1.02);
-  box-shadow: 0 18px 40px -12px rgba(99, 102, 241, 0.35), 0 8px 16px -4px rgba(99, 102, 241, 0.25);
-}
-
-.phone-card:hover::after {
-  opacity: 1;
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
 }
 
 /* Phone Image */
 .phone-image-container {
-  margin-bottom: 18px;
+  position: relative;
+  margin-bottom: 16px;
+  background: #f8f9fa;
+  border-radius: 20px;
+  padding: 24px;
+  height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .phone-img {
   width: 100%;
-  height: 210px;
+  height: 100%;
   object-fit: contain;
-  border-radius: 20px;
-  background: linear-gradient(180deg, #f1f5f9, #fff);
-  padding: 10px;
-  transition: transform 0.6s cubic-bezier(0.17, 0.67, 0.3, 1);
-  filter: drop-shadow(0 6px 12px rgba(30, 41, 59, 0.15));
+  max-width: 180px;
+  max-height: 180px;
 }
 
-.phone-card:hover .phone-img {
-  transform: translateY(-6px) scale(1.04);
+.image-indicators {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 6px;
+}
+
+.indicator {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.indicator.active {
+  background: #000;
 }
 
 /* Phone Info */
 .phone-info {
-  position: relative;
-  z-index: 1;
+  text-align: left;
 }
 
 .phone-name {
   font-size: 1.1rem;
-  font-weight: 700;
-  color: #1e293b;
+  font-weight: 600;
+  color: #000;
   margin: 0 0 8px;
-  letter-spacing: 0.3px;
+  line-height: 1.3;
 }
 
-.phone-details {
+.phone-price {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #000;
+  margin-bottom: 20px;
+}
+
+.phone-details-row {
+  margin-bottom: 8px;
+}
+
+.detail-label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #374151;
+}
+
+/* Phone Details Grid */
+.phone-details-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.detail-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.detail-item .detail-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #6366f1;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+}
+
+.detail-item .detail-value {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #374151;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.location-icon {
+  color: #6366f1;
+  font-size: 0.8rem;
+}
+
+/* Color Options - Remove */
+
+/* Card Footer */
+.card-footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 6px;
 }
 
-.phone-brand {
-  font-size: 0.85rem;
+.more-details-btn {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.1));
+  border: 1px solid rgba(99, 102, 241, 0.3);
   color: #6366f1;
+  font-size: 0.9rem;
   font-weight: 600;
-  background: rgba(99, 102, 241, 0.1);
-  padding: 4px 10px;
+  cursor: pointer;
+  padding: 10px 16px;
   border-radius: 12px;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
 }
 
-.phone-storage {
-  font-size: 0.8rem;
-  color: #64748b;
-  font-weight: 500;
-  background: #f1f5f9;
-  padding: 4px 8px;
-  border-radius: 8px;
+.more-details-btn:hover {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  color: white;
+  border-color: #6366f1;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
 }
 
-.phone-condition {
-  font-size: 0.8rem;
-  color: #059669;
-  font-weight: 600;
-  background: rgba(5, 150, 105, 0.1);
-  padding: 4px 10px;
-  border-radius: 12px;
-  margin-bottom: 8px;
-  display: inline-block;
+.cart-icon-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  color: white;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  font-size: 1rem;
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+}
+
+.cart-icon-btn:hover {
+  background: linear-gradient(135deg, #8b5cf6, #a855f7);
+  transform: scale(1.05);
+  box-shadow: 0 6px 16px rgba(99, 102, 241, 0.4);
 }
 
 .phone-location {
@@ -521,196 +605,7 @@
   font-size: 0.75rem;
 }
 
-/* Rating */
-.rating {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0 0 16px;
-  font-size: 0.85rem;
-}
-
-.rating svg {
-  margin: 0 1px;
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.15));
-}
-
-.rating-num {
-  margin-left: 6px;
-  font-size: 0.7rem;
-  font-weight: 600;
-  color: #64748b;
-  background: #f1f5f9;
-  padding: 2px 6px;
-  border-radius: 12px;
-}
-
-/* Price Section */
-.price-section {
-  margin: 16px 0;
-  display: flex;
-  justify-content: center;
-  align-items: baseline;
-  gap: 8px;
-}
-
-.old-price {
-  text-decoration: line-through;
-  color: #94a3b8;
-  font-size: 0.85rem;
-  font-weight: 500;
-}
-
-.new-price {
-  font-size: 1.6rem;
-  font-weight: 800;
-  background: linear-gradient(90deg, #2563eb, #6366f1, #8b5cf6);
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
-  letter-spacing: 0.5px;
-}
-
-/* Action Buttons */
-.action-btns {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  margin-top: 16px;
-}
-
-.add-cart-btn, .buy-now-btn {
-  width: 100%;
-  padding: 14px 14px 15px;
-  border-radius: 18px;
-  border: none;
-  cursor: pointer;
-  font-weight: 700;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  font-size: 0.85rem;
-  letter-spacing: 0.5px;
-  position: relative;
-  overflow: hidden;
-  transition: all 0.5s cubic-bezier(0.16, 0.84, 0.44, 1);
-}
-
-.add-cart-btn {
-  background: linear-gradient(135deg, #3b82f6, #6366f1 50%, #8b5cf6);
-  color: #fff;
-  box-shadow: 0 6px 16px -4px rgba(59, 130, 246, 0.45);
-}
-
-.buy-now-btn {
-  background: linear-gradient(135deg, #f59e0b, #f97316 40%, #ef4444);
-  color: #fff;
-  box-shadow: 0 6px 16px -4px rgba(249, 115, 22, 0.45);
-}
-
-.add-cart-btn::after, .buy-now-btn::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.4) 50%, rgba(255, 255, 255, 0) 100%);
-  transform: translateX(-100%);
-  transition: transform 0.7s ease;
-}
-
-.add-cart-btn:hover, .buy-now-btn:hover {
-  transform: translateY(-4px);
-}
-
-.add-cart-btn:hover {
-  box-shadow: 0 14px 28px -10px rgba(59, 130, 246, 0.5);
-}
-
-.buy-now-btn:hover {
-  box-shadow: 0 14px 30px -12px rgba(249, 115, 22, 0.55);
-}
-
-.add-cart-btn:hover::after, .buy-now-btn:hover::after {
-  transform: translateX(100%);
-}
-
-/* Pagination */
-.pagination {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-  margin-top: 40px;
-  padding: 20px;
-}
-
-.pagination-btn {
-  padding: 12px 20px;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(245, 247, 255, 0.7));
-  border: 1px solid rgba(99, 102, 241, 0.25);
-  border-radius: 16px;
-  color: #374151;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  backdrop-filter: blur(10px);
-}
-
-.pagination-btn:hover:not(:disabled) {
-  background: linear-gradient(135deg, #6366f1, #8b5cf6);
-  color: white;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 16px rgba(99, 102, 241, 0.3);
-}
-
-.pagination-btn:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-.pagination-numbers {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  margin: 0 16px;
-}
-
-.pagination-number {
-  width: 44px;
-  height: 44px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 12px;
-  border: 1px solid rgba(99, 102, 241, 0.25);
-  background: rgba(255, 255, 255, 0.8);
-  color: #374151;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  backdrop-filter: blur(10px);
-}
-
-.pagination-number.active {
-  background: linear-gradient(135deg, #6366f1, #8b5cf6);
-  color: white;
-  border-color: transparent;
-  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
-}
-
-.pagination-number:hover:not(.active) {
-  background: rgba(99, 102, 241, 0.1);
-  transform: translateY(-2px);
-}
-
-.pagination-ellipsis {
-  padding: 0 8px;
-  color: #94a3b8;
-  font-weight: 600;
-}
+/* Phone Location - Keep for backwards compatibility */
 
 /* Responsive Design */
 @media (max-width: 1200px) {
@@ -770,25 +665,6 @@
   .phones-grid {
     grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   }
-
-  .pagination {
-    flex-wrap: wrap;
-    gap: 6px;
-  }
-
-  .pagination-btn {
-    padding: 10px 16px;
-    font-size: 0.85rem;
-  }
-
-  .pagination-numbers {
-    margin: 0 8px;
-  }
-
-  .pagination-number {
-    width: 40px;
-    height: 40px;
-  }
 }
 
 @media (max-width: 640px) {
@@ -802,16 +678,51 @@
   }
 
   .phones-grid {
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .phone-card {
+    max-width: 100%;
+    padding: 18px;
+  }
+
+  .phone-image-container {
+    height: 200px;
+    padding: 20px;
   }
 
   .phone-img {
-    height: 180px;
+    max-width: 160px;
+    max-height: 160px;
   }
 
-  .add-cart-btn, .buy-now-btn {
+  .phone-name {
+    font-size: 1rem;
+  }
+
+  .phone-price {
+    font-size: 1.1rem;
+  }
+
+  .phone-details-grid {
+    grid-template-columns: 1fr;
+    gap: 6px;
+    margin-bottom: 16px;
+  }
+
+  .detail-item .detail-label {
+    font-size: 0.7rem;
+  }
+
+  .detail-item .detail-value {
     font-size: 0.8rem;
-    padding: 12px 14px 13px;
+  }
+
+  .cart-icon-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 0.9rem;
   }
 
   .filters-sidebar.show {
