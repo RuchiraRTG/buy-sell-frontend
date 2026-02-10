@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./land.css";
+import Navbar from "../../NavBar/Navbar";
+import Footer from "../../Footer/Footer";
 import { FaShoppingCart, FaMapMarkerAlt, FaSearch, FaFilter, FaTimes, FaHome, FaBuilding } from "react-icons/fa";
 
 const propertyData = [
@@ -200,7 +202,9 @@ function PropertyForSale() {
   };
 
   return (
-    <div className="accessories-container">
+    <>
+      <Navbar />
+      <div className="accessories-container">
       <div className="accessories-content">
         <div className="header-section">
           <h1 className="page-title">Property For Sale</h1>
@@ -377,7 +381,9 @@ function PropertyForSale() {
           /> */}
         </div>
       </div>
-    </div>
+      </div>
+      <Footer />
+    </>
   );
 }
 

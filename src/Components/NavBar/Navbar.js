@@ -1,11 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./Navbar.css";
-import axios from "axios";
 import { Link } from "react-router-dom";
 import Profile from "../Profile/Profile";
-import Support from "../Pages/support/support";
 import { useNavigate } from "react-router-dom";
-import Accessories from "../Pages/Accessories/Accessories";
  
 
 import {
@@ -58,12 +55,12 @@ function Navbar() {
           <Link to="/Phones" className="nav-link">
             Phones
           </Link>
-          <Link to="/Accessories" className="nav-link">
-            Accessories
+          <Link to="/electronics" className="nav-link">
+            Electronics
           </Link>
-          <a href="#" className="nav-link">
+          <Link to="/deals" className="nav-link">
             Deals
-          </a>
+          </Link>
           <Link to="/Support" className="nav-link">Support</Link>
         </nav>
 
@@ -73,7 +70,7 @@ function Navbar() {
           <div className={`search ${searchOpen ? "open" : ""}`}>
             <input
               type="search"
-              placeholder="Search phones…"
+              placeholder="Search electronics…"
               aria-label="Search"
               onBlur={() => setSearchOpen(false)}
             />
@@ -127,19 +124,19 @@ function Navbar() {
             Phones
           </Link>
           <Link
-            to="/Accessories"
+            to="/electronics"
             className="mobile-link"
             onClick={() => setMenuOpen(false)}
           >
-            Accessories
+            Electronics
           </Link>
-          <a
-            href="#"
+          <Link
+            to="/Property"
             className="mobile-link"
             onClick={() => setMenuOpen(false)}
           >
-            Deals
-          </a>
+           Property
+          </Link>
           <Link
             to="/Support"
             className="mobile-link"

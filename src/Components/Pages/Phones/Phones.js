@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Phones.css";
+import Navbar from "../../NavBar/Navbar";
+import Footer from "../../Footer/Footer";
 import iPhone15Pro from "../../../Assets/Img/iPhone15Pro.webp";
 import oneplus12 from "../../../Assets/Img/oneplus12.png";
 import s24 from "../../../Assets/Img/s24.jpg";
@@ -190,7 +192,9 @@ function Phones() {
   };
 
   return (
-    <div className="phones-container">
+    <>
+      <Navbar />
+      <div className="phones-container">
       <div className="phones-header">
         <h1 className="page-title">Premium Smartphones</h1>
         <p className="page-subtitle">Discover the latest and greatest mobile phones from top brands</p>
@@ -402,7 +406,9 @@ function Phones() {
            
         </div>
       </div>
-    </div>
+      </div>
+      <Footer />
+    </>
   );
 }
 
