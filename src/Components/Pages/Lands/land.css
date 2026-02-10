@@ -1,4 +1,4 @@
-/* Accessories Container */
+/* Property Container */
 .accessories-container {
   min-height: 100vh;
   background: linear-gradient(135deg, #eef4ff 0%, #f2ecff 40%, #f8f9fb 100%);
@@ -263,7 +263,7 @@
   font-weight: 600;
 }
 
-/* Accessories Grid */
+/* Properties Grid */
 .accessories-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -271,7 +271,7 @@
   margin-bottom: 3rem;
 }
 
-/* Accessory Card */
+/* Property Card */
 .accessory-card {
   background: linear-gradient(145deg, rgba(255, 255, 255, 0.95), rgba(248, 250, 252, 0.8));
   border: 1px solid rgba(99, 102, 241, 0.1);
@@ -327,7 +327,7 @@
   transform: scale(1.05);
 }
 
-/* Accessory Info */
+/* Property Info */
 .accessory-info {
   text-align: left;
 }
@@ -350,7 +350,7 @@
   margin-bottom: 14px;
 }
 
-/* Accessory Details Grid */
+/* Property Details Grid */
 .accessory-details-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
