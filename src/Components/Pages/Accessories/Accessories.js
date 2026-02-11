@@ -5,7 +5,7 @@ import Navbar from "../../NavBar/Navbar";
 import Footer from "../../Footer/Footer";
 import earbuds from "../../../Assets/Img/earbuds.jpg";
 import iphone15pro from "../../../Assets/Img/ip15pro.avif";
-import { FaShoppingCart, FaMapMarkerAlt, FaSearch, FaFilter, FaTimes } from "react-icons/fa";
+import { FaShoppingCart, FaMapMarkerAlt, FaSearch, FaFilter, FaTimes, FaHeart } from "react-icons/fa";
 // import Pagination from "../Phones/Pagination";
 
 const electronicsData = [
@@ -143,6 +143,8 @@ const electronicsData = [
   },
 ];
 
+const STORAGE_KEY = "wishlistItems";
+
 function Electronics() {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
@@ -151,6 +153,7 @@ function Electronics() {
   const [showFilters, setShowFilters] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(9);
+  const [wishlistItems, setWishlistItems] = useState([]);
 
   // Filter electronics based on search and filters
   const filteredElectronics = electronicsData.filter((item) => {
@@ -172,11 +175,54 @@ function Electronics() {
     setCurrentPage(1);
   }, [searchTerm, categoryFilter, conditionFilter]);
 
+  const readWishlist = () => {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (!saved) {
+      return [];
+    }
+
+    try {
+      const parsed = JSON.parse(saved);
+      return Array.isArray(parsed) ? parsed : [];
+    } catch (error) {
+      return [];
+    }
+  };
+
+  useEffect(() => {
+    setWishlistItems(readWishlist());
+  }, []);
+
   const clearFilters = () => {
     setSearchTerm("");
     setCategoryFilter("All");
     setConditionFilter("All");
     setShowFilters(false);
+  };
+
+  const isWishlisted = (wishlistId) =>
+    wishlistItems.some((saved) => saved.id === wishlistId);
+
+  const toggleWishlist = (item) => {
+    const wishlistId = `electronics-${item.id}`;
+    const payload = {
+      id: wishlistId,
+      title: item.name,
+      price: item.price,
+      image: item.image,
+      location: item.location,
+      condition: item.condition,
+      category: item.category,
+      route: `/electronics/${item.id}`,
+    };
+
+    const exists = wishlistItems.some((saved) => saved.id === wishlistId);
+    const nextItems = exists
+      ? wishlistItems.filter((saved) => saved.id !== wishlistId)
+      : [payload, ...wishlistItems];
+
+    setWishlistItems(nextItems);
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(nextItems));
   };
 
   return (
@@ -319,6 +365,17 @@ function Electronics() {
                         onClick={() => navigate(`/electronics/${item.id}`)}
                       >
                         More details
+                      </button>
+                      <button
+                        className={`wishlist-icon-btn ${isWishlisted(`electronics-${item.id}`) ? "active" : ""}`}
+                        aria-label="Save to wishlist"
+                        title="Save to wishlist"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          toggleWishlist(item);
+                        }}
+                      >
+                        <FaHeart />
                       </button>
                       <button 
                         className="cart-icon-btn"
