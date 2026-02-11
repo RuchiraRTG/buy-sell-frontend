@@ -590,6 +590,33 @@
   box-shadow: 0 6px 16px rgba(99, 102, 241, 0.4);
 }
 
+.wishlist-icon-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #fff1f0;
+  color: #ef4444;
+  border: 1px solid rgba(239, 68, 68, 0.35);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  font-size: 1rem;
+}
+
+.wishlist-icon-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 16px rgba(239, 68, 68, 0.2);
+}
+
+.wishlist-icon-btn.active {
+  background: #ef4444;
+  color: #ffffff;
+  border-color: #ef4444;
+  box-shadow: 0 6px 16px rgba(239, 68, 68, 0.3);
+}
+
 .phone-location {
   display: flex;
   align-items: center;

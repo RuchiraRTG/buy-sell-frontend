@@ -1,11 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./land.css";
-import Navbar from "../../NavBar/Navbar";
-import Footer from "../../Footer/Footer";
-import { FaShoppingCart, FaMapMarkerAlt, FaSearch, FaFilter, FaTimes, FaHome, FaBuilding, FaHeart } from "react-icons/fa";
-
-const STORAGE_KEY = "wishlistItems";
+import { FaShoppingCart, FaMapMarkerAlt, FaSearch, FaFilter, FaTimes, FaHome, FaBuilding } from "react-icons/fa";
 
 const propertyData = [
   {
@@ -174,7 +170,6 @@ function PropertyForSale() {
   const [showFilters, setShowFilters] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(9);
-  const [wishlistItems, setWishlistItems] = useState([]);
 
   // Filter properties based on search and filters
   const filteredProperties = propertyData.filter((property) => {
@@ -197,50 +192,6 @@ function PropertyForSale() {
     setCurrentPage(1);
   }, [searchTerm, categoryFilter, conditionFilter]);
 
-  const readWishlist = () => {
-    const saved = localStorage.getItem(STORAGE_KEY);
-    if (!saved) {
-      return [];
-    }
-
-    try {
-      const parsed = JSON.parse(saved);
-      return Array.isArray(parsed) ? parsed : [];
-    } catch (error) {
-      return [];
-    }
-  };
-
-  useEffect(() => {
-    setWishlistItems(readWishlist());
-  }, []);
-
-  const isWishlisted = (wishlistId) =>
-    wishlistItems.some((item) => item.id === wishlistId);
-
-  const toggleWishlist = (property) => {
-    const wishlistId = `property-${property.id}`;
-    const payload = {
-      id: wishlistId,
-      title: property.name,
-      price: property.price,
-      image: property.image,
-      location: property.location,
-      condition: property.condition,
-      category: property.category,
-      route: `/property/${property.id}`,
-      description: `${property.type} - ${property.size}`,
-    };
-
-    const exists = wishlistItems.some((item) => item.id === wishlistId);
-    const nextItems = exists
-      ? wishlistItems.filter((item) => item.id !== wishlistId)
-      : [payload, ...wishlistItems];
-
-    setWishlistItems(nextItems);
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(nextItems));
-  };
-
   const clearFilters = () => {
     setSearchTerm("");
     setCategoryFilter("All");
@@ -249,9 +200,7 @@ function PropertyForSale() {
   };
 
   return (
-    <>
-      <Navbar />
-      <div className="accessories-container">
+    <div className="accessories-container">
       <div className="accessories-content">
         <div className="header-section">
           <h1 className="page-title">Property For Sale</h1>
@@ -401,17 +350,6 @@ function PropertyForSale() {
                       >
                         More details
                       </button>
-                      <button
-                        className={`wishlist-icon-btn ${isWishlisted(`property-${property.id}`) ? "active" : ""}`}
-                        aria-label="Save to wishlist"
-                        title="Save to wishlist"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          toggleWishlist(property);
-                        }}
-                      >
-                        <FaHeart />
-                      </button>
                       <button 
                         className="cart-icon-btn"
                         onClick={(e) => {
@@ -439,9 +377,7 @@ function PropertyForSale() {
           /> */}
         </div>
       </div>
-      </div>
-      <Footer />
-    </>
+    </div>
   );
 }
 

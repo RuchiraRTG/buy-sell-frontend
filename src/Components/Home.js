@@ -1,6 +1,7 @@
 import React from "react";
 import { FaShieldHalved, FaTruckFast, FaHeadset } from "react-icons/fa6";
 import Navbar from "./NavBar/Navbar";
+import Footer from "./Footer/Footer";
 
 // IMAGES
 import ip15pro from "../Assets/Img/ip15pro.avif";
@@ -164,18 +165,7 @@ function HomePage() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-100 text-slate-600 py-8 border-t border-gray-200 text-center relative">
-        <div className="absolute inset-0 bg-slate-100/60"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_100%,rgba(59,130,246,0.03),transparent_60%)]"></div>
-        <div className="w-[min(1200px,92%)] mx-auto px-4 relative z-10">
-          <p className="mb-4 text-slate-700">© {new Date().getFullYear()} PhoneHub. All rights reserved.</p>
-          <div className="flex justify-center gap-8 text-sm">
-            {['Privacy','Terms','Support'].map(link => (
-              <a key={link} href="#" className="text-slate-600 hover:text-violet-600 transition-colors duration-300 hover:underline decoration-violet-600">{link}</a>
-            ))}
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </>
   );
 }

@@ -1,41 +1,23 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import "./Navbar.css";
-import axios from "axios";
 import { Link } from "react-router-dom";
-import Profile from "../Profile/Profile";
-import Support from "../Pages/support/support";
 import { useNavigate } from "react-router-dom";
-import Accessories from "../Pages/Accessories/Accessories";
- 
-
 import {
-  FaSearch,
+  FaHeart,
+  FaBell,
   FaUser,
-  FaShoppingCart,
   FaBars,
   FaTimes,
+  FaShoppingCart,
 } from "react-icons/fa";
 
 function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [searchOpen, setSearchOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-  const [showProfile, setShowProfile] = useState(false);
   const menuRef = useRef(null);
   const navigate = useNavigate();
 
-  // Add subtle shadow & solidify background after scrolling a bit
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
-    onScroll();
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
-
-
-  }, []);
-
   // Close menu when clicking outside on mobile
-  useEffect(() => {
+  React.useEffect(() => {
     const onClick = (e) => {
       if (menuOpen && menuRef.current && !menuRef.current.contains(e.target)) {
         setMenuOpen(false);
@@ -46,68 +28,80 @@ function Navbar() {
   }, [menuOpen]);
 
   return (
-    <header className={`navbar ${scrolled ? "scrolled" : ""}`}>
+    <header className="navbar">
       <div className="nav-inner">
         {/* Logo */}
-        <a href="#" className="logo" aria-label="PhoneHub Home">
-          <span className="logo-gradient">PhoneHub</span>
+        <a href="/home" className="logo" aria-label="PhoneHub Home">
+          <span className="logo-text">PhoneHub</span>
         </a>
 
         {/* Desktop Links */}
         <nav className="nav-links" aria-label="Primary">
+          <button 
+            className="nav-link"
+            onClick={() => navigate("/home")}
+          >
+            Home
+          </button>
           <Link to="/Phones" className="nav-link">
             Phones
           </Link>
-          <Link to="/Accessories" className="nav-link">
-            Accessories
+          <Link to="/electronics" className="nav-link">
+            Electronics
           </Link>
-          <a href="#" className="nav-link">
-            Deals
-          </a>
+          <button 
+            className="nav-link"
+            onClick={() => navigate("/lands")}
+          >
+            Property
+          </button>
           <Link to="/Support" className="nav-link">Support</Link>
         </nav>
 
         {/* Actions */}
         <div className="nav-actions">
-          {/* Expanding Search */}
-          <div className={`search ${searchOpen ? "open" : ""}`}>
-            <input
-              type="search"
-              placeholder="Search phones…"
-              aria-label="Search"
-              onBlur={() => setSearchOpen(false)}
-            />
-            <button
-              className="icon-btn"
-              aria-label="Toggle search"
-              onMouseDown={(e) => e.preventDefault()}
-              onClick={() => setSearchOpen((v) => !v)}
-              title="Search"
-            >
-              <FaSearch />
-            </button>
-          </div>
+          {/* Cart */}
+          {/* <button
+            className="icon-btn"
+            aria-label="Shopping Cart"
+            title="Shopping Cart"
+            onClick={() => navigate("/cart")}
+          >
+            <FaShoppingCart />
+          </button> */}
+
+          {/* Wishlist */}
+          <button
+            className="icon-btn"
+            aria-label="Wishlist"
+            title="Wishlist"
+            onClick={() => navigate("/wishlist")}
+          >
+            <FaHeart />
+          </button>
+
+          {/* Notifications */}
+          <button
+            className="icon-btn"
+            aria-label="Notifications"
+            title="Notifications"
+            onClick={() => navigate("/notifications")}
+          >
+            <FaBell />
+          </button>
 
           {/* Account */}
           <button
-            className="icon-btn"
+            className="icon-btn icon-btn-user"
             aria-label="Profile"
             onClick={() => navigate("/profile")}
           >
-            <FaUser className="icon" />
+            <FaUser />
           </button>
-
-          {/* Cart */}
-          <a href="#" className="cart icon-btn" aria-label="Cart">
-            <FaShoppingCart />
-            <span className="cart-count" aria-label="3 items in cart">
-              3
-            </span>
-          </a>
 
           {/* Mobile Menu Toggle */}
           <button
-            className="menu-toggle icon-btn"
+            className="menu-toggle"
             aria-label={menuOpen ? "Close menu" : "Open menu"}
             onClick={() => setMenuOpen((v) => !v)}
           >
@@ -119,6 +113,15 @@ function Navbar() {
       {/* Mobile Drawer */}
       <div className={`mobile-wrap ${menuOpen ? "open" : ""}`} ref={menuRef}>
         <nav className="mobile-nav" aria-label="Mobile">
+          <button
+            className="mobile-link"
+            onClick={() => {
+              navigate("/");
+              setMenuOpen(false);
+            }}
+          >
+            Home
+          </button>
           <Link
             to="/Phones"
             className="mobile-link"
@@ -127,19 +130,21 @@ function Navbar() {
             Phones
           </Link>
           <Link
-            to="/Accessories"
+            to="/electronics"
             className="mobile-link"
             onClick={() => setMenuOpen(false)}
           >
-            Accessories
+            Electronics
           </Link>
-          <a
-            href="#"
+          <button
             className="mobile-link"
-            onClick={() => setMenuOpen(false)}
+            onClick={() => {
+              navigate("/lands");
+              setMenuOpen(false);
+            }}
           >
-            Deals
-          </a>
+            Property
+          </button>
           <Link
             to="/Support"
             className="mobile-link"
@@ -148,15 +153,22 @@ function Navbar() {
             Support
           </Link>
           <div className="mobile-actions">
-            <button className="mobile-btn">Sign In</button>
-            <button className="mobile-btn mobile-btn-outline">View Cart</button>
+            <button className="mobile-btn" onClick={() => navigate("/profile")}>Sign In</button>
+            <button
+              className="mobile-btn mobile-btn-outline"
+              onClick={() => {
+                navigate("/wishlist");
+                setMenuOpen(false);
+              }}
+            >
+              Wishlist
+            </button>
           </div>
         </nav>
       </div>
 
       {/* Screen dim when menu open */}
       {menuOpen && <div className="scrim" onClick={() => setMenuOpen(false)} />}
-      {showProfile && <Profile />}
     </header>
   );
 }

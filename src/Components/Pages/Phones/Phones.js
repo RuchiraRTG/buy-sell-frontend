@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Phones.css";
+import Navbar from "../../NavBar/Navbar";
+import Footer from "../../Footer/Footer";
 import iPhone15Pro from "../../../Assets/Img/iPhone15Pro.webp";
 import oneplus12 from "../../../Assets/Img/oneplus12.png";
 import s24 from "../../../Assets/Img/s24.jpg";
-import { FaShoppingCart, FaMapMarkerAlt, FaSearch, FaFilter, FaTimes } from "react-icons/fa";
+import { FaShoppingCart, FaMapMarkerAlt, FaSearch, FaFilter, FaTimes, FaHeart } from "react-icons/fa";
  
 
 const phonesData = [
@@ -143,6 +145,8 @@ const conditions = [
   "Good"
 ];
 
+const STORAGE_KEY = "wishlistItems";
+
 function Phones() {
   const navigate = useNavigate();
   const [selectedLocation, setSelectedLocation] = useState("All Locations");
@@ -152,8 +156,27 @@ function Phones() {
   const [searchKeyword, setSearchKeyword] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [showFilters, setShowFilters] = useState(false);
+  const [wishlistItems, setWishlistItems] = useState([]);
   
   const itemsPerPage = 9; // Optimized for 3x3 grid layout
+
+  const readWishlist = () => {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (!saved) {
+      return [];
+    }
+
+    try {
+      const parsed = JSON.parse(saved);
+      return Array.isArray(parsed) ? parsed : [];
+    } catch (error) {
+      return [];
+    }
+  };
+
+  useEffect(() => {
+    setWishlistItems(readWishlist());
+  }, []);
 
   // Reset page to 1 when filters change
   useEffect(() => {
@@ -189,8 +212,36 @@ function Phones() {
     setCurrentPage(1);
   };
 
+  const isWishlisted = (wishlistId) =>
+    wishlistItems.some((item) => item.id === wishlistId);
+
+  const toggleWishlist = (phone) => {
+    const wishlistId = `phones-${phone.id}`;
+    const payload = {
+      id: wishlistId,
+      title: phone.name,
+      price: phone.price,
+      image: phone.image,
+      location: phone.location,
+      condition: phone.condition,
+      category: "Phones",
+      route: `/phones/${phone.id}`,
+      description: phone.description,
+    };
+
+    const exists = wishlistItems.some((item) => item.id === wishlistId);
+    const nextItems = exists
+      ? wishlistItems.filter((item) => item.id !== wishlistId)
+      : [payload, ...wishlistItems];
+
+    setWishlistItems(nextItems);
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(nextItems));
+  };
+
   return (
-    <div className="phones-container">
+    <>
+      <Navbar />
+      <div className="phones-container">
       <div className="phones-header">
         <h1 className="page-title">Premium Smartphones</h1>
         <p className="page-subtitle">Discover the latest and greatest mobile phones from top brands</p>
@@ -382,6 +433,17 @@ function Phones() {
                       >
                         More details
                       </button>
+                      <button
+                        className={`wishlist-icon-btn ${isWishlisted(`phones-${phone.id}`) ? "active" : ""}`}
+                        aria-label="Save to wishlist"
+                        title="Save to wishlist"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          toggleWishlist(phone);
+                        }}
+                      >
+                        <FaHeart />
+                      </button>
                       <button 
                         className="cart-icon-btn"
                         onClick={(e) => {
@@ -402,7 +464,9 @@ function Phones() {
            
         </div>
       </div>
-    </div>
+      </div>
+      <Footer />
+    </>
   );
 }
 
