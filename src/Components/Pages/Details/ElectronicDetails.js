@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import "./ElectronicDetails.css";
+import Navbar from "../../NavBar/Navbar";
+import Footer from "../../Footer/Footer";
 import { 
   FaStar, 
   FaMapMarkerAlt, 
   FaWhatsapp, 
-  FaComments, 
   FaShare, 
   FaHeart, 
   FaShieldAlt,
@@ -133,238 +134,227 @@ function ElectronicDetails() {
   };
 
   return (
-    <div className="electronic-details-container">
-      {/* Back Button */}
-      <button className="back-button" onClick={() => navigate('/electronics')}>
-        <FaArrowLeft /> Back to Electronics
-      </button>
-
-      <div className="electronic-details-content">
-        {/* Image Gallery */}
-        <div className="image-gallery">
-          <div className="main-image-container">
-            <img 
-              src={electronic.images[currentImageIndex]} 
-              alt={electronic.title}
-              className="main-image"
-            />
-            <button className="image-nav-button prev" onClick={prevImage}>
-              <FaChevronLeft />
-            </button>
-            <button className="image-nav-button next" onClick={nextImage}>
-              <FaChevronRight />
-            </button>
-            <div className="image-counter">
-              {currentImageIndex + 1}/{electronic.images.length}
-            </div>
-          </div>
-          
-          <div className="thumbnail-gallery">
-            {electronic.images.map((image, index) => (
-              <img
-                key={index}
-                src={image}
-                alt={`${electronic.title} ${index + 1}`}
-                className={`thumbnail ${index === currentImageIndex ? 'active' : ''}`}
-                onClick={() => setCurrentImageIndex(index)}
-              />
-            ))}
-          </div>
-        </div>
-
-        {/* Product Information */}
-        <div className="product-info">
-          <div className="product-header">
-            <h1 className="product-title">{electronic.title}</h1>
-            <div className="product-meta">
-              <span className="views">
-                <FaEye /> {electronic.views} views
-              </span>
-              <span className="posted-date">
-                <FaClock /> Posted {new Date(electronic.postedDate).toLocaleDateString()}
-              </span>
-            </div>
-          </div>
-
-          <div className="price-section">
-            <div className="price-info">
-              <span className="currency">Rs.</span>
-              <span className="price">{electronic.price.toLocaleString()}</span>
-              {electronic.negotiable && <span className="negotiable">Negotiable</span>}
-            </div>
-            <div className="action-buttons">
-              <button 
-                className={`like-button ${isLiked ? 'liked' : ''}`}
-                onClick={() => setIsLiked(!isLiked)}
-              >
-                <FaHeart />
-              </button>
-              <button className="share-button" onClick={handleShare}>
-                <FaShare />
-              </button>
-            </div>
-          </div>
-
-          {/* Quick Info */}
-          <div className="quick-info">
-            <div className="info-item">
-              <span className="label">Category</span>
-              <span className="value">{electronic.category}</span>
-            </div>
-            <div className="info-item">
-              <span className="label">Condition</span>
-              <span className="value condition-badge">{electronic.condition}</span>
-            </div>
-            <div className="info-item">
-              <span className="label">Location</span>
-              <span className="value">
-                <FaMapMarkerAlt /> {electronic.seller.location}
-              </span>
-            </div>
-          </div>
-
-          {/* Contact Buttons */}
-          <div className="contact-buttons">
-            <button className="whatsapp-button" onClick={handleWhatsAppContact}>
-              <FaWhatsapp /> Chat on WhatsApp
-            </button>
-            <button className="chat-button" onClick={handleShowContact}>
-              <FaComments /> Chat with Owner
-            </button>
-          </div>
-
-          {/* Seller Contact Info */}
-          {showSellerContact && (
-            <div className="contact-reveal">
-              <div className="contact-info">
-                <h4>Contact Information</h4>
-                <div className="contact-item">
-                  <FaPhone /> {electronic.seller.phone}
-                </div>
-                <div className="contact-item">
-                  <FaEnvelope /> {electronic.seller.email}
-                </div>
-              </div>
-            </div>
-          )}
-
-          {/* Reference */}
-          <div className="reference-section">
-            <p className="reference">Ref: {electronic.reference}</p>
-          </div>
-        </div>
-
-        {/* Seller Information Sidebar */}
-        <div className="seller-info">
-          <div className="seller-header">
-            <div className="seller-avatar">
-              <img 
-                src={`https://ui-avatars.com/api/?name=${electronic.seller.name}&background=6366f1&color=fff`}
-                alt={electronic.seller.name}
-              />
-              {electronic.seller.verified && (
-                <div className="verified-badge">
-                  <FaCheckCircle />
-                </div>
-              )}
-            </div>
-            <div className="seller-details">
-              <h3>{electronic.seller.name}</h3>
-              <div className="seller-rating">
-                <div className="stars">
-                  {[...Array(Math.floor(electronic.seller.rating))].map((_, i) => (
-                    <FaStar key={i} style={{ color: '#f59e0b' }} />
-                  ))}
-                </div>
-                <span className="rating-text">{electronic.seller.rating} ({electronic.seller.totalReviews} reviews)</span>
-              </div>
-              <p className="member-since">
-                <FaCheckCircle style={{ color: '#059669' }} /> Member since {electronic.seller.memberSince}
-              </p>
-            </div>
-          </div>
-
-          {/* Seller Stats */}
-          <div className="seller-stats">
-            <div className="stat-item">
-              <span className="stat-label">Response Time</span>
-              <span className="stat-value">{electronic.seller.responseTime}</span>
-            </div>
-            <div className="stat-item">
-              <span className="stat-label">Location</span>
-              <span className="stat-value">
-                <FaMapMarkerAlt /> {electronic.seller.location}
-              </span>
-            </div>
-          </div>
-
-          <button 
-            className="view-profile-button"
-            onClick={() => navigate('/profile')}
-          >
-            View All Ads by {electronic.seller.name.split(' ')[0]}
+    <>
+      <Navbar />
+      <div className="electronic-details-page-wrapper">
+        <div className="electronic-details-container">
+          {/* Back Button */}
+          <button className="back-button" onClick={() => navigate('/electronics')}>
+            <FaArrowLeft /> Back to Electronics
           </button>
-        </div>
-      </div>
 
-      {/* Product Details Section - Full Width */}
-      <div className="product-details-section">
-        {/* Description */}
-        <div className="description-section">
-          <h3>Description</h3>
-          <p className="description">{electronic.description}</p>
-        </div>
+          <div className="electronic-details-content">
+            {/* Left Side - Image Gallery */}
+            <div className="electronic-gallery-section">
+              <div className="main-image-container">
+                <img 
+                  src={electronic.images[currentImageIndex]} 
+                  alt={electronic.title}
+                  className="main-image"
+                />
+                
+                {/* Image Navigation */}
+                {electronic.images.length > 1 && (
+                  <>
+                    <button className="image-nav prev" onClick={prevImage}>
+                      <FaChevronLeft />
+                    </button>
+                    <button className="image-nav next" onClick={nextImage}>
+                      <FaChevronRight />
+                    </button>
+                    <div className="image-counter">
+                      {currentImageIndex + 1} / {electronic.images.length}
+                    </div>
+                  </>
+                )}
 
-        {/* Features */}
-        <div className="features-section">
-          <h3>Key Features</h3>
-          <div className="features-grid">
-            {electronic.features.map((feature, index) => (
-              <div key={index} className="feature-item">
-                <FaCheckCircle /> {feature}
+                {/* Action Buttons on Image */}
+                <button 
+                  className={`like-button ${isLiked ? 'liked' : ''}`}
+                  onClick={() => setIsLiked(!isLiked)}
+                >
+                  <FaHeart />
+                </button>
               </div>
-            ))}
-          </div>
-        </div>
 
-        {/* Specifications */}
-        <div className="specifications-section">
-          <h3>Specifications</h3>
-          <div className="specs-container">
-            <div className="specs-grid">
-              {Object.entries(electronic.specifications).map(([key, value]) => (
-                <div key={key} className="spec-item">
-                  <FaMicrochip />
-                  <div>
-                    <span className="spec-label">{key.replace(/([A-Z])/g, ' $1').trim()}</span>
-                    <span className="spec-value">{value}</span>
+              {/* Thumbnail Gallery */}
+              <div className="thumbnail-gallery">
+                {electronic.images.map((img, index) => (
+                  <img
+                    key={index}
+                    src={img}
+                    alt={`${electronic.title} ${index + 1}`}
+                    className={`thumbnail ${currentImageIndex === index ? 'active' : ''}`}
+                    onClick={() => setCurrentImageIndex(index)}
+                  />
+                ))}
+              </div>
+            </div>
+
+            {/* Right Side - Product Details */}
+            <div className="electronic-info-section">
+              {/* Header */}
+              <div className="electronic-header">
+                <div className="electronic-badge">{electronic.category}</div>
+                <h1 className="electronic-title">{electronic.title}</h1>
+                <div className="electronic-meta">
+                  <span className="electronic-views">
+                    <FaEye /> {electronic.views} views
+                  </span>
+                  <span className="electronic-posted">
+                    <FaClock /> Posted {new Date(electronic.postedDate).toLocaleDateString()}
+                  </span>
+                </div>
+              </div>
+
+              {/* Price */}
+              <div className="electronic-price-section">
+                <div className="electronic-price">Rs.{electronic.price.toLocaleString()}</div>
+                {electronic.negotiable && <span className="negotiable-tag">Negotiable</span>}
+              </div>
+
+              {/* Location */}
+              <div className="electronic-location">
+                <FaMapMarkerAlt className="location-icon" />
+                <span>{electronic.seller.location}</span>
+              </div>
+
+              {/* Quick Specs */}
+              <div className="quick-specs">
+                <div className="spec-item">
+                  <FaMicrochip className="spec-icon" />
+                  <span>{electronic.category}</span>
+                </div>
+                <div className="spec-item">
+                  <FaCheckCircle className="spec-icon" />
+                  <span>{electronic.condition}</span>
+                </div>
+                <div className="spec-item">
+                  <FaStar className="spec-icon" />
+                  <span>{electronic.brand}</span>
+                </div>
+                <div className="spec-item">
+                  <FaMicrochip className="spec-icon" />
+                  <span>{electronic.model}</span>
+                </div>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="action-buttons">
+                <button className="btn-primary" onClick={handleWhatsAppContact}>
+                  <FaWhatsapp /> WhatsApp
+                </button>
+                <button className="btn-secondary" onClick={handleShowContact}>
+                  <FaPhone /> Show Number
+                </button>
+                <button className="btn-outline" onClick={handleShare}>
+                  <FaShare /> Share
+                </button>
+              </div>
+
+              {/* Show Contact Info */}
+              {showSellerContact && (
+                <div className="contact-info-box">
+                  <div className="contact-item">
+                    <FaPhone />
+                    <a href={`tel:${electronic.seller.phone}`}>{electronic.seller.phone}</a>
+                  </div>
+                  <div className="contact-item">
+                    <FaEnvelope />
+                    <a href={`mailto:${electronic.seller.email}`}>{electronic.seller.email}</a>
                   </div>
                 </div>
-              ))}
+              )}
+
+              {/* Seller Info */}
+              <div className="seller-card">
+                <h3 className="section-title">Seller Information</h3>
+                <div className="seller-info">
+                  <div className="seller-avatar">
+                    {electronic.seller.name.charAt(0)}
+                  </div>
+                  <div className="seller-details">
+                    <div className="seller-name">
+                      {electronic.seller.name}
+                      {electronic.seller.verified && (
+                        <FaCheckCircle className="verified-icon" />
+                      )}
+                    </div>
+                    <div className="seller-rating">
+                      <FaStar className="star-icon" />
+                      <span>{electronic.seller.rating}</span>
+                      <span className="reviews-count">({electronic.seller.totalReviews} reviews)</span>
+                    </div>
+                    <div className="seller-meta">
+                      <FaCalendarAlt /> Member since {electronic.seller.memberSince}
+                    </div>
+                    <div className="seller-response">
+                      {electronic.seller.responseTime}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Safety Tips */}
+              <div className="safety-tips">
+                <FaShieldAlt className="safety-icon" />
+                <div className="safety-content">
+                  <h4>Safety Tips</h4>
+                  <ul>
+                    <li>Meet seller at a safe public location</li>
+                    <li>Check the product in person before making payment</li>
+                    <li>Verify the condition matches description</li>
+                    <li>Never transfer money without proper verification</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Full Width Sections */}
+          <div className="full-width-sections">
+            {/* Description */}
+            <div className="detail-section">
+              <h2 className="section-title">Description</h2>
+              <p className="electronic-description">{electronic.description}</p>
+            </div>
+
+            {/* Specifications */}
+            <div className="detail-section">
+              <h2 className="section-title">Specifications</h2>
+              <div className="specs-grid">
+                {Object.entries(electronic.specifications).map(([key, value]) => (
+                  <div key={key} className="spec-row">
+                    <span className="spec-label">{key.charAt(0).toUpperCase() + key.slice(1).replace(/([A-Z])/g, ' $1')}</span>
+                    <span className="spec-value">{value}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Features */}
+            <div className="detail-section">
+              <h2 className="section-title">Features & Amenities</h2>
+              <div className="features-grid">
+                {electronic.features.map((feature, index) => (
+                  <div key={index} className="feature-item">
+                    <FaCheckCircle className="check-icon" />
+                    <span>{feature}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Reference Number */}
+            <div className="reference-section">
+              <span className="reference-label">Reference ID:</span>
+              <span className="reference-number">{electronic.reference}</span>
             </div>
           </div>
         </div>
       </div>
-
-      {/* Company Policy Section */}
-      <div className="company-policy-section">
-        <h3>Company Policy</h3>
-        <div className="policy-content">
-          <div className="policy-item">
-            <FaShieldAlt /> We only build relationships with customers and are not responsible for any errors.
-          </div>
-          <div className="policy-item">
-            <FaCheckCircle /> All transactions are between buyer and seller directly.
-          </div>
-          <div className="policy-item">
-            <FaShieldAlt /> Please verify product condition and authenticity before purchase.
-          </div>
-          <div className="policy-item">
-            <FaCheckCircle /> We recommend meeting in safe, public locations for exchanges.
-          </div>
-        </div>
-      </div>
-    </div>
+      <Footer />
+    </>
   );
 }
 
