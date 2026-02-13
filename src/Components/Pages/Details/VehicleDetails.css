@@ -1,18 +1,18 @@
-/* PhoneDetails.css */
+/* VehicleDetails.css */
 
 /* Light background page wrapper */
-.phone-details-page-wrapper {
+.vehicle-details-page-wrapper {
   background: #f9fafb;
   min-height: 100vh;
   width: 100%;
 }
 
 /* Override global dark background */
-body:has(.phone-details-container) {
+body:has(.vehicle-details-container) {
   background: #f9fafb !important;
 }
 
-.phone-details-container {
+.vehicle-details-container {
   max-width: 1400px;
   margin: 0 auto;
   padding: 80px 20px 40px;
@@ -41,7 +41,7 @@ body:has(.phone-details-container) {
   transform: translateX(-4px);
 }
 
-.phone-details-content {
+.vehicle-details-content {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 40px;
@@ -49,7 +49,7 @@ body:has(.phone-details-container) {
 }
 
 /* Gallery Section */
-.phone-gallery-section {
+.vehicle-gallery-section {
   position: sticky;
   top: 100px;
   align-self: flex-start;
@@ -168,19 +168,19 @@ body:has(.phone-details-container) {
   opacity: 1;
 }
 
-/* Phone Info Section */
-.phone-info-section {
+/* Vehicle Info Section */
+.vehicle-info-section {
   display: flex;
   flex-direction: column;
   gap: 24px;
 }
 
-.phone-header {
+.vehicle-header {
   border-bottom: 1px solid #e5e7eb;
   padding-bottom: 16px;
 }
 
-.phone-badge {
+.vehicle-badge {
   display: inline-block;
   background: #dbeafe;
   color: #1e40af;
@@ -192,7 +192,7 @@ body:has(.phone-details-container) {
   text-transform: uppercase;
 }
 
-.phone-title {
+.vehicle-title {
   font-size: 28px;
   font-weight: 700;
   color: #111827;
@@ -200,21 +200,21 @@ body:has(.phone-details-container) {
   line-height: 1.3;
 }
 
-.phone-meta {
+.vehicle-meta {
   display: flex;
   gap: 20px;
   font-size: 14px;
   color: #6b7280;
 }
 
-.phone-views,
-.phone-posted {
+.vehicle-views,
+.vehicle-posted {
   display: flex;
   align-items: center;
   gap: 6px;
 }
 
-.phone-price-section {
+.vehicle-price-section {
   display: flex;
   align-items: center;
   gap: 12px;
@@ -223,7 +223,7 @@ body:has(.phone-details-container) {
   border-radius: 12px;
 }
 
-.phone-price {
+.vehicle-price {
   font-size: 36px;
   font-weight: 800;
   color: #ffffff;
@@ -238,11 +238,9 @@ body:has(.phone-details-container) {
   font-weight: 600;
 }
 
-.phone-location {
+.vehicle-location {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  text-align: left;
   gap: 8px;
   font-size: 16px;
   color: #374151;
@@ -491,7 +489,7 @@ body:has(.phone-details-container) {
   border-radius: 12px;
 }
 
-.phone-description {
+.vehicle-description {
   font-size: 15px;
   line-height: 1.7;
   color: #374151;
@@ -581,12 +579,12 @@ body:has(.phone-details-container) {
 
 /* Responsive Design */
 @media (max-width: 1024px) {
-  .phone-details-content {
+  .vehicle-details-content {
     grid-template-columns: 1fr;
     gap: 32px;
   }
 
-  .phone-gallery-section {
+  .vehicle-gallery-section {
     position: relative;
     top: 0;
   }
@@ -605,7 +603,7 @@ body:has(.phone-details-container) {
 }
 
 @media (max-width: 768px) {
-  .phone-details-container {
+  .vehicle-details-container {
     padding: 0 16px;
     margin-top: 70px;
   }
@@ -618,11 +616,11 @@ body:has(.phone-details-container) {
     grid-template-columns: repeat(3, 1fr);
   }
 
-  .phone-title {
+  .vehicle-title {
     font-size: 22px;
   }
 
-  .phone-price {
+  .vehicle-price {
     font-size: 28px;
   }
 

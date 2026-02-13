@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import "./PhoneDetails.css";
+import "./VehicleDetails.css";
 import Navbar from "../../NavBar/Navbar";
 import Footer from "../../Footer/Footer";
 import { 
   FaStar, 
   FaMapMarkerAlt, 
   FaWhatsapp, 
+  FaComments, 
   FaShare, 
   FaHeart, 
   FaShieldAlt, 
@@ -19,103 +20,154 @@ import {
   FaPhone,
   FaEnvelope,
   FaCalendarAlt,
-  FaMicrochip,
-  FaBatteryFull,
-  FaCamera,
-  FaMemory
+  FaCar,
+  FaTachometerAlt,
+  FaGasPump,
+  FaCog
 } from "react-icons/fa";
 
-// Sample detailed phone data
-const phoneDetailsData = {
+// Sample detailed vehicle data
+const vehicleDetailsData = {
   1: {
     id: 1,
-    title: "iPhone 15 Pro 256GB",
-    brand: "Apple",
-    model: "iPhone 15 Pro",
-    price: 1200,
+    title: "Toyota Land Cruiser Prado",
+    brand: "Toyota",
+    type: "SUV",
+    price: 45000,
     negotiable: true,
     images: [
-      "https://via.placeholder.com/600x600?text=iPhone+15+Pro+Front",
-      "https://via.placeholder.com/600x600?text=iPhone+15+Pro+Back",
-      "https://via.placeholder.com/600x600?text=iPhone+15+Pro+Side",
-      "https://via.placeholder.com/600x600?text=iPhone+15+Pro+Box"
+      "https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=600",
+      "https://images.unsplash.com/photo-1605559424843-9e4c3ca4628d?w=600",
+      "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=600",
+      "https://images.unsplash.com/photo-1590362891991-f776e747a588?w=600"
     ],
-    description: "Brand new iPhone 15 Pro in Natural Titanium. Sealed box with all original accessories. Never used, purchased from Apple Store with full warranty. Perfect condition.",
+    description: "Well-maintained Toyota Land Cruiser Prado with full service history. This premium SUV offers exceptional off-road capabilities, luxury interior, and advanced safety features. Perfect for families and adventure enthusiasts. Regular maintenance records available.",
     specifications: {
-      storage: "256GB",
-      ram: "8GB",
-      processor: "A17 Pro",
-      display: "6.1-inch Super Retina XDR",
-      camera: "48MP + 12MP + 12MP",
-      battery: "Up to 23 hours",
-      color: "Natural Titanium",
-      condition: "Brand New"
+      year: "2020",
+      mileage: "45,000 km",
+      fuelType: "Diesel",
+      transmission: "Automatic",
+      color: "White Pearl",
+      engineSize: "2.8L",
+      seats: "7"
     },
     location: "Colombo 7, Sri Lanka",
     seller: {
-      name: "Pamudu Perera",
-      rating: 4.8,
-      totalReviews: 47,
-      joinedDate: "2023-01-15",
-      location: "Piliyandala, Colombo",
-      responseTime: "Usually responds within 2 hours",
-      phone: "+94712345678",
-      email: "pamudu@example.com",
+      name: "Nimal Fernando",
+      rating: 4.9,
+      totalReviews: 52,
+      joinedDate: "2022-08-20",
+      location: "Colombo",
+      responseTime: "Usually responds within 1 hour",
+      phone: "+94771234567",
+      email: "nimal@example.com",
       verified: true,
       memberSince: "2 years"
     },
     features: [
-      "Original Apple Warranty",
-      "All Original Accessories",
-      "Factory Sealed",
-      "International Model",
-      "Face ID",
-      "MagSafe Compatible"
+      "Full Service History",
+      "Original Paint",
+      "New Tires",
+      "Air Conditioning",
+      "Power Steering",
+      "ABS Brakes",
+      "Sunroof",
+      "Leather Interior"
     ],
-    postedDate: "2025-09-28",
-    views: 156,
-    reference: "P67891234567890123"
+    postedDate: "2025-11-05",
+    views: 342,
+    reference: "V12345678901234567"
+  },
+  2: {
+    id: 2,
+    title: "Honda Civic 2022",
+    brand: "Honda",
+    type: "Sedan",
+    price: 28000,
+    negotiable: true,
+    images: [
+      "https://images.unsplash.com/photo-1590362891991-f776e747a588?w=600",
+      "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=600",
+      "https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=600",
+      "https://images.unsplash.com/photo-1605559424843-9e4c3ca4628d?w=600"
+    ],
+    description: "Latest Honda Civic with advanced safety features and fuel-efficient engine. Perfect for city driving with excellent fuel economy. Low mileage, pristine condition. All original documents and warranty transfer available.",
+    specifications: {
+      year: "2022",
+      mileage: "12,000 km",
+      fuelType: "Petrol",
+      transmission: "Automatic",
+      color: "Metallic Gray",
+      engineSize: "1.5L",
+      seats: "5"
+    },
+    location: "Gampaha, Sri Lanka",
+    seller: {
+      name: "Sanduni Perera",
+      rating: 4.6,
+      totalReviews: 28,
+      joinedDate: "2023-03-15",
+      location: "Gampaha",
+      responseTime: "Usually responds within 3 hours",
+      phone: "+94762345678",
+      email: "sanduni@example.com",
+      verified: true,
+      memberSince: "1 year"
+    },
+    features: [
+      "Factory Warranty",
+      "Zero Accident History",
+      "Original Paperwork",
+      "Cruise Control",
+      "Rear Camera",
+      "Power Windows",
+      "Touch Screen Display",
+      "Bluetooth Connectivity"
+    ],
+    postedDate: "2025-10-28",
+    views: 189,
+    reference: "V23456789012345678"
   }
 };
 
-function PhoneDetails() {
+function VehicleDetails() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const [phone, setPhone] = useState(null);
+  const [vehicle, setVehicle] = useState(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isLiked, setIsLiked] = useState(false);
   const [showSellerContact, setShowSellerContact] = useState(false);
 
   useEffect(() => {
-    const phoneData = phoneDetailsData[id];
-    if (phoneData) {
-      setPhone(phoneData);
+    const vehicleData = vehicleDetailsData[id];
+    if (vehicleData) {
+      setVehicle(vehicleData);
     } else {
-      navigate('/phones');
+      navigate('/vehical');
     }
   }, [id, navigate]);
 
-  if (!phone) {
+  if (!vehicle) {
     return <div className="loading">Loading...</div>;
   }
 
   const nextImage = () => {
     setCurrentImageIndex((prev) => 
-      prev === phone.images.length - 1 ? 0 : prev + 1
+      prev === vehicle.images.length - 1 ? 0 : prev + 1
     );
   };
 
   const prevImage = () => {
     setCurrentImageIndex((prev) => 
-      prev === 0 ? phone.images.length - 1 : prev - 1
+      prev === 0 ? vehicle.images.length - 1 : prev - 1
     );
   };
 
   const handleShare = () => {
     if (navigator.share) {
       navigator.share({
-        title: phone.title,
-        text: phone.description,
+        title: vehicle.title,
+        text: vehicle.description,
         url: window.location.href,
       });
     } else {
@@ -124,32 +176,32 @@ function PhoneDetails() {
   };
 
   const handleWhatsApp = () => {
-    const message = `Hi, I'm interested in your phone: ${phone.title} - Rs.${phone.price.toLocaleString()}`;
-    window.open(`https://wa.me/${phone.seller.phone.replace(/[^0-9]/g, '')}?text=${encodeURIComponent(message)}`);
+    const message = `Hi, I'm interested in your vehicle: ${vehicle.title} - Rs.${vehicle.price.toLocaleString()}`;
+    window.open(`https://wa.me/${vehicle.seller.phone.replace(/[^0-9]/g, '')}?text=${encodeURIComponent(message)}`);
   };
 
   return (
     <>
       <Navbar />
-      <div className="phone-details-page-wrapper">
-        <div className="phone-details-container">
+      <div className="vehicle-details-page-wrapper">
+        <div className="vehicle-details-container">
           {/* Back Button */}
-          <button className="back-button" onClick={() => navigate('/phones')}>
-            <FaArrowLeft /> Back to Phones
+          <button className="back-button" onClick={() => navigate('/vehicles')}>
+            <FaArrowLeft /> Back to Vehicles
           </button>
 
-        <div className="phone-details-content">
+        <div className="vehicle-details-content">
           {/* Left Side - Image Gallery */}
-          <div className="phone-gallery-section">
+          <div className="vehicle-gallery-section">
             <div className="main-image-container">
               <img 
-                src={phone.images[currentImageIndex]} 
-                alt={phone.title}
+                src={vehicle.images[currentImageIndex]} 
+                alt={vehicle.title}
                 className="main-image"
               />
               
               {/* Image Navigation */}
-              {phone.images.length > 1 && (
+              {vehicle.images.length > 1 && (
                 <>
                   <button className="image-nav prev" onClick={prevImage}>
                     <FaChevronLeft />
@@ -158,7 +210,7 @@ function PhoneDetails() {
                     <FaChevronRight />
                   </button>
                   <div className="image-counter">
-                    {currentImageIndex + 1} / {phone.images.length}
+                    {currentImageIndex + 1} / {vehicle.images.length}
                   </div>
                 </>
               )}
@@ -174,11 +226,11 @@ function PhoneDetails() {
 
             {/* Thumbnail Gallery */}
             <div className="thumbnail-gallery">
-              {phone.images.map((img, index) => (
+              {vehicle.images.map((img, index) => (
                 <img
                   key={index}
                   src={img}
-                  alt={`${phone.title} ${index + 1}`}
+                  alt={`${vehicle.title} ${index + 1}`}
                   className={`thumbnail ${currentImageIndex === index ? 'active' : ''}`}
                   onClick={() => setCurrentImageIndex(index)}
                 />
@@ -186,51 +238,51 @@ function PhoneDetails() {
             </div>
           </div>
 
-          {/* Right Side - Phone Details */}
-          <div className="phone-info-section">
+          {/* Right Side - Vehicle Details */}
+          <div className="vehicle-info-section">
             {/* Header */}
-            <div className="phone-header">
-              <div className="phone-badge">{phone.model}</div>
-              <h1 className="phone-title">{phone.title}</h1>
-              <div className="phone-meta">
-                <span className="phone-views">
-                  <FaEye /> {phone.views} views
+            <div className="vehicle-header">
+              <div className="vehicle-badge">{vehicle.type}</div>
+              <h1 className="vehicle-title">{vehicle.title}</h1>
+              <div className="vehicle-meta">
+                <span className="vehicle-views">
+                  <FaEye /> {vehicle.views} views
                 </span>
-                <span className="phone-posted">
-                  <FaClock /> Posted {new Date(phone.postedDate).toLocaleDateString()}
+                <span className="vehicle-posted">
+                  <FaClock /> Posted {new Date(vehicle.postedDate).toLocaleDateString()}
                 </span>
               </div>
             </div>
 
             {/* Price */}
-            <div className="phone-price-section">
-              <div className="phone-price">Rs.{phone.price.toLocaleString()}</div>
-              {phone.negotiable && <span className="negotiable-tag">Negotiable</span>}
+            <div className="vehicle-price-section">
+              <div className="vehicle-price">Rs.{vehicle.price.toLocaleString()}</div>
+              {vehicle.negotiable && <span className="negotiable-tag">Negotiable</span>}
             </div>
 
             {/* Location */}
-            <div className="phone-location">
+            <div className="vehicle-location">
               <FaMapMarkerAlt className="location-icon" />
-              <span>{phone.location}</span>
+              <span>{vehicle.location}</span>
             </div>
 
             {/* Quick Specs */}
             <div className="quick-specs">
               <div className="spec-item">
-                <FaMemory className="spec-icon" />
-                <span>{phone.specifications.storage}</span>
+                <FaCalendarAlt className="spec-icon" />
+                <span>{vehicle.specifications.year}</span>
               </div>
               <div className="spec-item">
-                <FaMicrochip className="spec-icon" />
-                <span>{phone.specifications.ram}</span>
+                <FaTachometerAlt className="spec-icon" />
+                <span>{vehicle.specifications.mileage}</span>
               </div>
               <div className="spec-item">
-                <FaCamera className="spec-icon" />
-                <span>{phone.specifications.camera}</span>
+                <FaGasPump className="spec-icon" />
+                <span>{vehicle.specifications.fuelType}</span>
               </div>
               <div className="spec-item">
-                <FaBatteryFull className="spec-icon" />
-                <span>{phone.specifications.battery}</span>
+                <FaCog className="spec-icon" />
+                <span>{vehicle.specifications.transmission}</span>
               </div>
             </div>
 
@@ -252,11 +304,11 @@ function PhoneDetails() {
               <div className="contact-info-box">
                 <div className="contact-item">
                   <FaPhone />
-                  <a href={`tel:${phone.seller.phone}`}>{phone.seller.phone}</a>
+                  <a href={`tel:${vehicle.seller.phone}`}>{vehicle.seller.phone}</a>
                 </div>
                 <div className="contact-item">
                   <FaEnvelope />
-                  <a href={`mailto:${phone.seller.email}`}>{phone.seller.email}</a>
+                  <a href={`mailto:${vehicle.seller.email}`}>{vehicle.seller.email}</a>
                 </div>
               </div>
             )}
@@ -266,25 +318,25 @@ function PhoneDetails() {
               <h3 className="section-title">Seller Information</h3>
               <div className="seller-info">
                 <div className="seller-avatar">
-                  {phone.seller.name.charAt(0)}
+                  {vehicle.seller.name.charAt(0)}
                 </div>
                 <div className="seller-details">
                   <div className="seller-name">
-                    {phone.seller.name}
-                    {phone.seller.verified && (
+                    {vehicle.seller.name}
+                    {vehicle.seller.verified && (
                       <FaCheckCircle className="verified-icon" />
                     )}
                   </div>
                   <div className="seller-rating">
                     <FaStar className="star-icon" />
-                    <span>{phone.seller.rating}</span>
-                    <span className="reviews-count">({phone.seller.totalReviews} reviews)</span>
+                    <span>{vehicle.seller.rating}</span>
+                    <span className="reviews-count">({vehicle.seller.totalReviews} reviews)</span>
                   </div>
                   <div className="seller-meta">
-                    <FaCalendarAlt /> Member since {phone.seller.memberSince}
+                    <FaCalendarAlt /> Member since {vehicle.seller.memberSince}
                   </div>
                   <div className="seller-response">
-                    {phone.seller.responseTime}
+                    {vehicle.seller.responseTime}
                   </div>
                 </div>
               </div>
@@ -297,8 +349,8 @@ function PhoneDetails() {
                 <h4>Safety Tips</h4>
                 <ul>
                   <li>Meet seller at a safe public location</li>
-                  <li>Check the phone in person before making payment</li>
-                  <li>Verify phone authenticity and condition</li>
+                  <li>Conduct a test drive and mechanical inspection</li>
+                  <li>Verify all vehicle documents and ownership</li>
                   <li>Never transfer money without proper verification</li>
                 </ul>
               </div>
@@ -311,14 +363,14 @@ function PhoneDetails() {
           {/* Description */}
           <div className="detail-section">
             <h2 className="section-title">Description</h2>
-            <p className="phone-description">{phone.description}</p>
+            <p className="vehicle-description">{vehicle.description}</p>
           </div>
 
           {/* Specifications */}
           <div className="detail-section">
-            <h2 className="section-title">Phone Specifications</h2>
+            <h2 className="section-title">Vehicle Specifications</h2>
             <div className="specs-grid">
-              {Object.entries(phone.specifications).map(([key, value]) => (
+              {Object.entries(vehicle.specifications).map(([key, value]) => (
                 <div key={key} className="spec-row">
                   <span className="spec-label">{key.charAt(0).toUpperCase() + key.slice(1).replace(/([A-Z])/g, ' $1')}</span>
                   <span className="spec-value">{value}</span>
@@ -331,7 +383,7 @@ function PhoneDetails() {
           <div className="detail-section">
             <h2 className="section-title">Features & Amenities</h2>
             <div className="features-grid">
-              {phone.features.map((feature, index) => (
+              {vehicle.features.map((feature, index) => (
                 <div key={index} className="feature-item">
                   <FaCheckCircle className="check-icon" />
                   <span>{feature}</span>
@@ -343,7 +395,7 @@ function PhoneDetails() {
           {/* Reference Number */}
           <div className="reference-section">
             <span className="reference-label">Reference ID:</span>
-            <span className="reference-number">{phone.reference}</span>
+            <span className="reference-number">{vehicle.reference}</span>
           </div>
         </div>
       </div>
@@ -353,4 +405,4 @@ function PhoneDetails() {
   );
 }
 
-export default PhoneDetails;
+export default VehicleDetails;
