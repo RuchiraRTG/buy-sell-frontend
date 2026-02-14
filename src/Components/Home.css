@@ -41,7 +41,7 @@
 /* Main Categories Section */
 .main-categories-section {
   padding: 60px 20px;
-  background: white;
+  background: rgb(255, 255, 255);
 }
 
 .categories-grid {
@@ -53,7 +53,7 @@
 
 .category-card {
   position: relative;
-  padding: 32px;
+  padding: 0;
   border-radius: 16px;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -61,12 +61,47 @@
   min-height: 220px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
+  background-size: cover;
+  background-position: center;
 }
 
 .category-card:hover {
   transform: translateY(-8px);
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+.category-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.category-card:hover::before {
+  opacity: 1;
+}
+
+.category-overlay {
+  position: relative;
+  z-index: 2;
+  padding: 32px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.category-card:hover .category-overlay {
+  opacity: 1;
 }
 
 .category-header {
@@ -77,7 +112,7 @@
 .category-title {
   font-size: 18px;
   font-weight: 700;
-  color: #4a1d96;
+  color: white;
   margin-bottom: 8px;
   display: flex;
   align-items: center;
@@ -86,7 +121,7 @@
 
 .category-count {
   font-size: 13px;
-  color: #6b21a8;
+  color: rgba(255, 255, 255, 0.9);
   font-weight: 500;
 }
 
@@ -102,9 +137,15 @@
   color: #4a1d96;
 }
 
+.category-image {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+}
+
 /* Sub Categories Section */
 .sub-categories-section {
-  padding: 40px 20px 60px;
+  padding: 80px 20px 100px;
   background: linear-gradient(135deg, #f8f9ff 0%, #f2f5ff 50%, #f6f1ff 100%);
 }
 
@@ -148,7 +189,7 @@
 /* Hover color effects matching icon colors */
 .sub-category-card:hover:has(.bg-red-50) {
   background: rgba(254, 226, 226, 0.9);
-  border-color: #ef4444;
+  border-color: #f7f4f4;
 }
 
 .sub-category-card:hover:has(.bg-blue-50) {
