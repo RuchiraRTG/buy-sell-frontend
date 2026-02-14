@@ -29,28 +29,28 @@ function HomePage() {
     {
       title: "VEHICLES",
       count: "16,291 Vehicle Ads Available",
-      icon: FaCar,
+      image: require("../Assets/Img/vehical.png"),
       gradient: "from-pink-100 to-pink-200",
       route: "/vehical"
     },
     {
       title: "PROPERTIES",
       count: "12,228 Property Ads Available",
-      icon: FaHome,
+      image: require("../Assets/Img/property.png"),
       gradient: "from-pink-100 to-pink-200",
       route: "/lands"
     },
     {
       title: "ELECTRONICS",
       count: "968 Electronics Ads Available",
-      icon: FaMobileAlt,
+      image: require("../Assets/Img/phone.png"),
       gradient: "from-pink-100 to-pink-200",
       route: "/phones"
     },
     {
       title: "HOME & LIVING",
       count: "245 Home & Living Ads Available",
-      icon: FaCouch,
+      image: require("../Assets/Img/electronic_device.png"),
       gradient: "from-pink-100 to-pink-200",
       route: "/accessories"
     }
@@ -106,17 +106,21 @@ function HomePage() {
             {mainCategories.map((category, index) => (
               <div
                 key={index}
-                className={`category-card bg-gradient-to-br ${category.gradient}`}
+                className="category-card"
+                style={{
+                  backgroundImage: `url(${category.image})`,
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center'
+                }}
                 onClick={() => navigate(category.route)}
               >
-                <div className="category-header">
-                  <h3 className="category-title">
-                    {category.title} <FaChevronRight />
-                  </h3>
-                  <p className="category-count">{category.count}</p>
-                </div>
-                <div className="category-icon-wrapper">
-                  <category.icon className="category-icon" />
+                <div className="category-overlay">
+                  <div className="category-header">
+                    <h3 className="category-title">
+                      {category.title} <FaChevronRight />
+                    </h3>
+                    <p className="category-count">{category.count}</p>
+                  </div>
                 </div>
               </div>
             ))}
