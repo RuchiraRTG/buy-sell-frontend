@@ -62,7 +62,7 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  background-size: cover;
+  background-size:fill;
   background-position: center;
 }
 
