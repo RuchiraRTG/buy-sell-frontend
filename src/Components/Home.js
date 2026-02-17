@@ -57,12 +57,12 @@ function HomePage() {
   ];
 
   const subCategories = [
-    { name: "Automotive parts", icon: FaCar, count: "78 ads", color: "text-red-500", bg: "bg-red-50" },
-    { name: "Health and Beauty", icon: FaHeartbeat, count: "64 ads", color: "text-orange-500", bg: "bg-orange-50" },
-    { name: "Toys & Games", icon: FaGamepad, count: "25 ads", color: "text-purple-500", bg: "bg-purple-50" },
-    { name: "Education", icon: FaGraduationCap, count: "36 ads", color: "text-indigo-500", bg: "bg-indigo-50" },
-    { name: "Other", icon: FaBriefcase, count: "57 ads", color: "text-green-500", bg: "bg-green-50" },
-    { name: "Sports & Outdoors", icon: FaSeedling, count: "42 ads", color: "text-teal-500", bg: "bg-teal-50" },
+    { name: "Automotive parts", icon: FaCar, count: "78 ads", color: "text-red-500", bg: "bg-red-50", route: "/sub/automotive-parts" },
+    { name: "Health and Beauty", icon: FaHeartbeat, count: "64 ads", color: "text-orange-500", bg: "bg-orange-50", route: "/sub/health-and-beauty" },
+    { name: "Toys & Games", icon: FaGamepad, count: "25 ads", color: "text-purple-500", bg: "bg-purple-50", route: "/sub/toys-and-games" },
+    { name: "Education", icon: FaGraduationCap, count: "36 ads", color: "text-indigo-500", bg: "bg-indigo-50", route: "/sub/education" },
+    { name: "Other", icon: FaBriefcase, count: "57 ads", color: "text-green-500", bg: "bg-green-50", route: "/sub/other" },
+    { name: "Sports & Outdoors", icon: FaSeedling, count: "42 ads", color: "text-teal-500", bg: "bg-teal-50", route: "/sub/sports-and-outdoors" },
   ];
 
   return (
@@ -137,6 +137,7 @@ function HomePage() {
                 <div
                   key={`subcat-${index}`}
                   className="sub-category-card"
+                  onClick={() => navigate(category.route)}
                 >
                   <div className={`sub-category-icon ${category.bg}`}>
                     <category.icon className={category.color} />
@@ -152,6 +153,7 @@ function HomePage() {
                 <div
                   key={`subcat-dup-${index}`}
                   className="sub-category-card"
+                  onClick={() => navigate(category.route)}
                 >
                   <div className={`sub-category-icon ${category.bg}`}>
                     <category.icon className={category.color} />
