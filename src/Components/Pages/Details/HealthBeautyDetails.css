@@ -1,0 +1,672 @@
+/* HealthBeautyDetails.css */
+
+.healthbeauty-details-page-wrapper {
+  background: #f9fafb;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.healthbeauty-details-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 80px 20px 40px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #f9fafb;
+}
+
+.back-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: #f3f4f6;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  color: #374151;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-bottom: 24px;
+}
+
+.back-button:hover {
+  background: #e5e7eb;
+  transform: translateX(-4px);
+}
+
+.healthbeauty-details-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  margin-bottom: 40px;
+}
+
+.healthbeauty-gallery-section {
+  position: sticky;
+  top: 100px;
+  align-self: flex-start;
+}
+
+.main-image-container {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #f9fafb;
+  margin-bottom: 16px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.main-image {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+  display: block;
+}
+
+.image-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.95);
+  border: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: #1f2937;
+  font-size: 24px;
+  font-weight: bold;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.image-nav:hover {
+  background: #ffffff;
+  transform: translateY(-50%) scale(1.1);
+}
+
+.image-nav.prev {
+  left: 16px;
+}
+
+.image-nav.next {
+  right: 16px;
+}
+
+.thumbnail-gallery {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.thumbnail {
+  width: 100%;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: all 0.2s ease;
+  opacity: 0.6;
+}
+
+.thumbnail:hover,
+.thumbnail.active {
+  opacity: 1;
+  border-color: #6366f1;
+}
+
+.healthbeauty-details-info {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.category-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.1));
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  color: #6366f1;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  width: fit-content;
+}
+
+.product-title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #1f2937;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.seller-info-preview {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 16px;
+  background: #ffffff;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+}
+
+.seller-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 28px;
+  flex-shrink: 0;
+}
+
+.seller-details {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.seller-name {
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0;
+}
+
+.seller-rating {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+}
+
+.seller-rating .star {
+  color: #fbbf24;
+}
+
+.review-count {
+  color: #6b7280;
+}
+
+.seller-location {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #6b7280;
+  font-size: 14px;
+  margin: 0;
+}
+
+.product-price-section {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.05), rgba(139, 92, 246, 0.05));
+  border-radius: 12px;
+  border: 1px solid rgba(99, 102, 241, 0.1);
+}
+
+.price-display {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.price {
+  font-size: 2.5rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.negotiable {
+  background: #ecfdf5;
+  color: #065f46;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  border: 1px solid #a7f3d0;
+}
+
+.action-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.btn-contact,
+.btn-wishlist,
+.btn-message-seller {
+  padding: 14px 24px;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+}
+
+.btn-contact {
+  background: linear-gradient(135deg, #25D366, #128C7E);
+  color: white;
+  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+}
+
+.btn-contact:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(37, 211, 102, 0.4);
+}
+
+.btn-wishlist {
+  background: #fff1f0;
+  color: #ef4444;
+  border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+.btn-wishlist:hover {
+  background: #fee2e2;
+}
+
+.btn-wishlist.active {
+  background: #ef4444;
+  color: white;
+  border-color: #ef4444;
+}
+
+.contact-seller-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.contact-seller-card h3 {
+  margin: 0 0 16px;
+  color: #1f2937;
+  font-size: 16px;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #374151;
+  font-size: 14px;
+  margin-bottom: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.contact-item:last-child {
+  margin-bottom: 0;
+  border-bottom: none;
+}
+
+.contact-item svg {
+  color: #6366f1;
+  flex-shrink: 0;
+}
+
+.healthbeauty-description-section {
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  margin-bottom: 30px;
+}
+
+.healthbeauty-description-section h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 16px;
+  margin-top: 0;
+}
+
+.healthbeauty-description-section p {
+  color: #4b5563;
+  line-height: 1.8;
+  margin: 0;
+  font-size: 15px;
+}
+
+.healthbeauty-specs-section {
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  margin-bottom: 30px;
+}
+
+.healthbeauty-specs-section h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 20px;
+  margin-top: 0;
+}
+
+.specs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.spec-item {
+  display: flex;
+  gap: 12px;
+  padding: 16px;
+  background: #f9fafb;
+  border-radius: 8px;
+  border-left: 3px solid #6366f1;
+}
+
+.spec-label {
+  font-weight: 600;
+  color: #6366f1;
+  min-width: 120px;
+}
+
+.spec-value {
+  color: #374151;
+  font-weight: 500;
+}
+
+.healthbeauty-features-section {
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  margin-bottom: 30px;
+}
+
+.healthbeauty-features-section h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 20px;
+  margin-top: 0;
+}
+
+.features-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.feature-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px;
+  background: #f9fafb;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+}
+
+.feature-icon {
+  color: #10b981;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.feature-item span {
+  color: #374151;
+  font-weight: 500;
+}
+
+.healthbeauty-additional-info {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.info-card {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.info-icon {
+  font-size: 24px;
+  color: #6366f1;
+  margin-top: 4px;
+}
+
+.info-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0;
+}
+
+.info-value {
+  font-size: 16px;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 6px 0 0;
+}
+
+.seller-details-card {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.05), rgba(139, 92, 246, 0.05));
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  padding: 30px;
+  border-radius: 16px;
+}
+
+.seller-header {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.seller-avatar-large {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 48px;
+  flex-shrink: 0;
+}
+
+.seller-info-large h3 {
+  margin: 0 0 8px;
+  font-size: 1.3rem;
+  color: #1f2937;
+}
+
+.seller-rating-large {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  color: #6b7280;
+}
+
+.seller-rating-large .star {
+  color: #fbbf24;
+}
+
+.verified-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #ecfdf5;
+  color: #065f46;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  border: 1px solid #a7f3d0;
+  margin-top: 8px;
+}
+
+.seller-meta {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  margin-bottom: 20px;
+  padding: 20px 0;
+  border-bottom: 1px solid rgba(99, 102, 241, 0.1);
+}
+
+.meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.meta-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0;
+}
+
+.meta-value {
+  font-size: 15px;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0;
+}
+
+.btn-message-seller {
+  width: 100%;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  color: white;
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+}
+
+.btn-message-seller:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(99, 102, 241, 0.4);
+}
+
+@media (max-width: 1024px) {
+  .healthbeauty-details-content {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .healthbeauty-gallery-section {
+    position: static;
+  }
+
+  .main-image {
+    height: 400px;
+  }
+
+  .product-title {
+    font-size: 1.5rem;
+  }
+
+  .specs-grid,
+  .features-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .healthbeauty-details-container {
+    padding: 60px 16px 30px;
+  }
+
+  .healthbeauty-details-content {
+    gap: 20px;
+  }
+
+  .main-image {
+    height: 300px;
+  }
+
+  .product-title {
+    font-size: 1.3rem;
+  }
+
+  .price {
+    font-size: 2rem;
+  }
+
+  .action-buttons {
+    grid-template-columns: 1fr;
+  }
+
+  .specs-grid,
+  .features-list {
+    grid-template-columns: 1fr;
+  }
+
+  .thumbnail-gallery {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .seller-header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .seller-meta {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .healthbeauty-details-container {
+    padding: 60px 12px 20px;
+  }
+
+  .main-image {
+    height: 250px;
+  }
+
+  .product-title {
+    font-size: 1.1rem;
+  }
+
+  .price {
+    font-size: 1.5rem;
+  }
+
+  .healthbeauty-description-section,
+  .healthbeauty-specs-section,
+  .healthbeauty-features-section,
+  .seller-details-card {
+    padding: 16px;
+  }
+
+  .thumbnail-gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

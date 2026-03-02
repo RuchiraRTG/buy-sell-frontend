@@ -1,21 +1,301 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import "./Other.css";
 import Navbar from "../../NavBar/Navbar";
 import Footer from "../../Footer/Footer";
-import "./Other.css";
+import { FaShoppingCart, FaMapMarkerAlt, FaSearch, FaFilter, FaTimes, FaHeart } from "react-icons/fa";
+
+const STORAGE_KEY = "wishlistItems";
+
+const otherData = [
+  {
+    id: 1,
+    name: "Vintage Watch Collection",
+    category: "Accessories",
+    price: 180,
+    image: "https://via.placeholder.com/220x220?text=Vintage+Watch",
+    location: "Colombo",
+    condition: "Good",
+    brand: "Vintage",
+  },
+  {
+    id: 2,
+    name: "Antique Wooden Furniture Piece",
+    category: "Furniture",
+    price: 450,
+    image: "https://via.placeholder.com/220x220?text=Furniture",
+    location: "Kandy",
+    condition: "Excellent",
+    brand: "Heritage",
+  },
+  {
+    id: 3,
+    name: "Pet Grooming Kit",
+    category: "Pet Supplies",
+    price: 65,
+    image: "https://via.placeholder.com/220x220?text=Pet+Kit",
+    location: "Galle",
+    condition: "Brand New",
+    brand: "PetCare",
+  },
+  {
+    id: 4,
+    name: "Home Decoration Set",
+    category: "Home & Garden",
+    price: 120,
+    image: "https://via.placeholder.com/220x220?text=Home+Decor",
+    location: "Colombo",
+    condition: "Brand New",
+    brand: "HomeStyle",
+  },
+  {
+    id: 5,
+    name: "Collectible Comic Books (10 Issues)",
+    category: "Collectibles",
+    price: 95,
+    image: "https://via.placeholder.com/220x220?text=Comics",
+    location: "Negombo",
+    condition: "Good",
+    brand: "Marvel",
+  },
+  {
+    id: 6,
+    name: "Kitchenware Utensils Bundle",
+    category: "Kitchen",
+    price: 85,
+    image: "https://via.placeholder.com/220x220?text=Kitchen+Tools",
+    location: "Colombo",
+    condition: "Brand New",
+    brand: "ChefsPro",
+  },
+];
 
 function Other() {
+  const navigate = useNavigate();
+  const [searchTerm, setSearchTerm] = useState("");
+  const [categoryFilter, setCategoryFilter] = useState("All");
+  const [conditionFilter, setConditionFilter] = useState("All");
+  const [showFilters, setShowFilters] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(9);
+  const [wishlistItems, setWishlistItems] = useState([]);
+
+  const filteredItems = otherData.filter((item) => {
+    const matchesSearch = item.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         item.category.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         item.brand.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesCategory = categoryFilter === "All" || item.category === categoryFilter;
+    const matchesCondition = conditionFilter === "All" || item.condition === conditionFilter;
+    
+    return matchesSearch && matchesCategory && matchesCondition;
+  });
+
+  const totalPages = Math.ceil(filteredItems.length / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const paginatedItems = filteredItems.slice(startIndex, startIndex + itemsPerPage);
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [searchTerm, categoryFilter, conditionFilter]);
+
+  const readWishlist = () => {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (!saved) return [];
+    try {
+      const parsed = JSON.parse(saved);
+      return Array.isArray(parsed) ? parsed : [];
+    } catch (error) {
+      return [];
+    }
+  };
+
+  useEffect(() => {
+    setWishlistItems(readWishlist());
+  }, []);
+
+  const isWishlisted = (wishlistId) =>
+    wishlistItems.some((item) => item.id === wishlistId);
+
+  const toggleWishlist = (item) => {
+    const wishlistId = `other-${item.id}`;
+    const payload = {
+      id: wishlistId,
+      title: item.name,
+      price: item.price,
+      image: item.image,
+      location: item.location,
+      condition: item.condition,
+      category: item.category,
+      route: `/other/${item.id}`,
+      description: `${item.brand} - ${item.category}`,
+    };
+
+    const exists = wishlistItems.some((wItem) => wItem.id === wishlistId);
+    const nextItems = exists
+      ? wishlistItems.filter((wItem) => wItem.id !== wishlistId)
+      : [payload, ...wishlistItems];
+
+    setWishlistItems(nextItems);
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(nextItems));
+  };
+
+  const clearFilters = () => {
+    setSearchTerm("");
+    setCategoryFilter("All");
+    setConditionFilter("All");
+    setShowFilters(false);
+  };
+
   return (
     <>
       <Navbar />
-      <div className="vehicles-container">
-        <div className="vehicles-header">
-          <h1 className="page-title">Other</h1>
-          <p className="page-subtitle">Discover unique listings that do not fit elsewhere.</p>
-        </div>
-        <div className="vehicles-content">
-          <div className="vehicles-main">
+      <div className="accessories-container">
+        <div className="accessories-content">
+          <div className="header-section">
+            <h1 className="page-title">Other</h1>
+            <p className="page-subtitle">
+              Discover unique listings that do not fit elsewhere
+            </p>
+
+            <div className="search-container">
+              <div className="search-wrapper">
+                <FaSearch className="search-icon" />
+                <input
+                  type="text"
+                  placeholder="Search items or categories..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="search-input"
+                />
+                {searchTerm && (
+                  <button className="clear-search" onClick={() => setSearchTerm("")}>
+                    <FaTimes />
+                  </button>
+                )}
+              </div>
+            </div>
+
+            <div className="filters-section">
+              <div className="filter-row">
+                <div className="filter-group">
+                  <label className="filter-label">Category</label>
+                  <select 
+                    value={categoryFilter} 
+                    onChange={(e) => setCategoryFilter(e.target.value)}
+                    className="filter-select"
+                  >
+                    <option value="All">All Categories</option>
+                    <option value="Accessories">Accessories</option>
+                    <option value="Furniture">Furniture</option>
+                    <option value="Pet Supplies">Pet Supplies</option>
+                    <option value="Home & Garden">Home & Garden</option>
+                    <option value="Collectibles">Collectibles</option>
+                    <option value="Kitchen">Kitchen</option>
+                  </select>
+                </div>
+
+                <div className="filter-group">
+                  <label className="filter-label">Condition</label>
+                  <select 
+                    value={conditionFilter} 
+                    onChange={(e) => setConditionFilter(e.target.value)}
+                    className="filter-select"
+                  >
+                    <option value="All">All Conditions</option>
+                    <option value="Brand New">Brand New</option>
+                    <option value="Good">Good</option>
+                    <option value="Excellent">Excellent</option>
+                  </select>
+                </div>
+              </div>
+
+              {(searchTerm || categoryFilter !== "All" || conditionFilter !== "All") && (
+                <button className="clear-filters" onClick={clearFilters}>
+                  <FaTimes /> Clear all filters
+                </button>
+              )}
+            </div>
+          </div>
+
+          <div className="content-section">
+            <button className="mobile-filter-btn" onClick={() => setShowFilters(!showFilters)}>
+              <FaFilter /> Filters ({filteredItems.length})
+            </button>
+
             <div className="results-header">
-              <p className="results-count">No listings yet. Add items to see them here.</p>
+              <span className="results-count">
+                Showing {startIndex + 1}-{Math.min(startIndex + itemsPerPage, filteredItems.length)} of {filteredItems.length} products
+                {totalPages > 1 && (
+                  <span className="page-info"> • Page {currentPage} of {totalPages}</span>
+                )}
+              </span>
+            </div>
+
+            <div className="accessories-grid">
+              {paginatedItems.map((item) => (
+                <div key={item.id} className="accessory-card">
+                  <div className="accessory-image-container">
+                    <img 
+                      src={item.image} 
+                      alt={item.name}
+                      className="accessory-img"
+                    />
+                  </div>
+
+                  <div className="accessory-info">
+                    <h3 className="accessory-name">{item.name}</h3>
+                    <div className="accessory-price">${item.price.toLocaleString()}</div>
+                    
+                    <div className="accessory-details-grid">
+                      <div className="detail-item">
+                        <span className="detail-label">Brand</span>
+                        <span className="detail-value">{item.brand}</span>
+                      </div>
+                      <div className="detail-item">
+                        <span className="detail-label">Category</span>
+                        <span className="detail-value">{item.category}</span>
+                      </div>
+                      <div className="detail-item">
+                        <span className="detail-label">Condition</span>
+                        <span className="detail-value">{item.condition}</span>
+                      </div>
+                      <div className="detail-item">
+                        <span className="detail-label">Location</span>
+                        <span className="detail-value">
+                          <FaMapMarkerAlt className="location-icon" />
+                          {item.location}
+                        </span>
+                      </div>
+                    </div>
+
+                    <div className="card-footer">
+                      <button 
+                        className="more-details-btn"
+                        onClick={() => navigate(`/other/${item.id}`)}
+                      >
+                        More details
+                      </button>
+                      <button
+                        className={`wishlist-icon-btn ${isWishlisted(`other-${item.id}`) ? "active" : ""}`}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          toggleWishlist(item);
+                        }}
+                      >
+                        <FaHeart />
+                      </button>
+                      <button 
+                        className="cart-icon-btn"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                        }}
+                      >
+                        <FaShoppingCart />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>

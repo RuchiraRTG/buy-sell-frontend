@@ -20,6 +20,12 @@ import ToysAndGames from "./Components/Pages/Sub/ToysAndGames";
 import Education from "./Components/Pages/Sub/Education";
 import Other from "./Components/Pages/Sub/Other";
 import SportsAndOutdoors from "./Components/Pages/Sub/SportsAndOutdoors";
+import AutomotivePartsDetails from "./Components/Pages/Details/AutomotivePartsDetails";
+import HealthBeautyDetails from "./Components/Pages/Details/HealthBeautyDetails";
+import ToysGamesDetails from "./Components/Pages/Details/ToysGamesDetails";
+import EducationDetails from "./Components/Pages/Details/EducationDetails";
+import OtherDetails from "./Components/Pages/Details/OtherDetails";
+import SportsOutdoorsDetails from "./Components/Pages/Details/SportsOutdoorsDetails";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -41,11 +47,17 @@ function App() {
         <Route path="/vehicles" element={<Vehicles />} />
         <Route path="/vehicles/:id" element={<VehicleDetails />} />
         <Route path="/sub/automotive-parts" element={<AutomotiveParts />} />
+        <Route path="/automotive/:id" element={<AutomotivePartsDetails />} />
         <Route path="/sub/health-and-beauty" element={<HealthAndBeauty />} />
+        <Route path="/healthbeauty/:id" element={<HealthBeautyDetails />} />
         <Route path="/sub/toys-and-games" element={<ToysAndGames />} />
+        <Route path="/toys/:id" element={<ToysGamesDetails />} />
         <Route path="/sub/education" element={<Education />} />
+        <Route path="/education/:id" element={<EducationDetails />} />
         <Route path="/sub/other" element={<Other />} />
+        <Route path="/other/:id" element={<OtherDetails />} />
         <Route path="/sub/sports-and-outdoors" element={<SportsAndOutdoors />} />
+        <Route path="/sports/:id" element={<SportsOutdoorsDetails />} />
         <Route path="/wishlist" element={<Wishlist />} />
         <Route path="/notifications" element={<Notifications />} />
         <Route path="/cart" element={<Cart />} />
